@@ -155,10 +155,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  jumpSpeed: 8
+  jumpSpeed: 10
   gravitySpeed: 10
   maxSpeed: 10
   airFactor: .5
+  horizontalAxis: Horizontal1
+  jumpAxis: Jump1
 --- !u!1 &519282534
 GameObject:
   m_ObjectHideFlags: 0
