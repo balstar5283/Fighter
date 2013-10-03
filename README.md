@@ -1,4 +1,4 @@
-Supter Hobo Fighter 2: Extreme Edition
+Super Hobo Fighter 2: Extreme Edition
 =======
 
 Description:
