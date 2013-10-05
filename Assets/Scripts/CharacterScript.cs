@@ -5,7 +5,7 @@ public class CharacterScript : MonoBehaviour {
 	
 	public float movementSpeed = 10.0f;
 	public float jumpSpeed = 10.0f;
-	public float gravitySpeed = 1f;
+	public float gravitySpeed = 20f;
 	public float maxSpeed = 10.0f;
 	public float airFactor = .5f;
 	public string horizontalAxis = "Horizontal1";
@@ -53,11 +53,21 @@ public class CharacterScript : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider c) {
-		equipItem(c.gameObject.name);
-		Destroy(c.gameObject);
+		if(c.gameObject.name == "ItemTriggerBox") {
+			print ("Hi!");
+			equipItem(c.transform.parent.gameObject.name);
+			Destroy(c.transform.parent.gameObject);
+			Destroy(c.gameObject);
+		}
+		
+		if(c.gameObject.name == "PunchBox" || c.gameObject.name == "KickBox") {
+		}
 	}
 
 	
 	void equipItem(string itemName) {
+	}
+	
+	void changeHitBox(string itemName) {
 	}
 }
