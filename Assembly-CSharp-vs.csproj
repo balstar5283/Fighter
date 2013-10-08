@@ -46,6 +46,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterScript.cs" />
      <Compile Include="Assets\Scripts\Hover.cs" />
+     <Compile Include="Assets\Scripts\MovementAnimation.cs" />
+     <Compile Include="Assets\Scripts\RoundDisplay.cs" />
      <Compile Include="Assets\Scripts\Test\AnimationTest.cs" />
      <Compile Include="Assets\Scripts\Test\RoundAnimation.cs" />
      <Compile Include="Assets\Scripts\Test\WalkTest.cs" />
