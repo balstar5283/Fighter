@@ -1,3 +1,12 @@
+#Unity Library
+Library/
+Temp/
+*.pidb
+*.csproj
+*.unityproj
+*.sln
+*.userprefs
+
 #################
 ## Eclipse
 #################
