@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class AnimationTest : MonoBehaviour {
-	public string horizontalAxis = "Horizontal";
+	public string horizontalAxis = "Horizontal1";
 	public string verticalAxis = "Vertical";
 	public float offset = .125f;
 	public float offsetLimit;
