@@ -52,15 +52,19 @@ public class CharacterScript : MonoBehaviour {
 		
 	}
 	
+	void OnControllerColliderHit(ControllerColliderHit hit) {
+		if(hit.gameObject.name == "Gun") {
+			equipItem(hit.transform.gameObject.name);
+			Destroy(hit.gameObject);
+		}
+	}
+	
 	void OnTriggerEnter(Collider c) {
 		if(c.gameObject.name == "ItemTriggerBox") {
 			print ("Hi!");
 			equipItem(c.transform.parent.gameObject.name);
 			Destroy(c.transform.parent.gameObject);
 			Destroy(c.gameObject);
-		}
-		
-		if(c.gameObject.name == "PunchBox" || c.gameObject.name == "KickBox") {
 		}
 	}
 
