@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{07A93D5A-8928-513C-CF19-0AD47FBF7C68}</ProjectGuid>
+	<ProjectGuid>{CF968991-06A2-41F8-289A-A4D30B8F2DCB}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,17 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\CharacterScript.cs" />
-     <Compile Include="Assets\Scripts\Hover.cs" />
-     <Compile Include="Assets\Scripts\MovementAnimation.cs" />
-     <Compile Include="Assets\Scripts\RoundDisplay.cs" />
-     <Compile Include="Assets\Scripts\ItemFade.cs" />
-     <Compile Include="Assets\Scripts\ItemScript.cs" />
-     <Compile Include="Assets\Scripts\ItemSpawner.cs" />
-     <Compile Include="Assets\Scripts\Test\AnimationTest.cs" />
-     <Compile Include="Assets\Scripts\Test\RoundAnimation.cs" />
-     <Compile Include="Assets\Scripts\Test\WalkTest.cs" />
-     <Compile Include="Assets\Scripts\Timer.cs" />
+     <Compile Include="Assets\Scripts\NewBehaviourScript.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

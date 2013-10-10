@@ -48,6 +48,9 @@
      <Compile Include="Assets\Scripts\Hover.cs" />
      <Compile Include="Assets\Scripts\MovementAnimation.cs" />
      <Compile Include="Assets\Scripts\RoundDisplay.cs" />
+     <Compile Include="Assets\Scripts\ItemFade.cs" />
+     <Compile Include="Assets\Scripts\ItemScript.cs" />
+     <Compile Include="Assets\Scripts\ItemSpawner.cs" />
      <Compile Include="Assets\Scripts\Test\AnimationTest.cs" />
      <Compile Include="Assets\Scripts\Test\RoundAnimation.cs" />
      <Compile Include="Assets\Scripts\Test\WalkTest.cs" />
