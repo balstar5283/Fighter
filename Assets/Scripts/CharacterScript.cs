@@ -53,23 +53,23 @@ public class CharacterScript : MonoBehaviour {
 	}
 	
 	void OnControllerColliderHit(ControllerColliderHit hit) {
-		if(hit.gameObject.name == "Gun") {
-			equipItem(hit.transform.gameObject.name);
+		if(hit.gameObject.tag == "Gun" || hit.gameObject.tag == "Bat") {
+			equipItem(hit.transform.gameObject.tag);
 			Destroy(hit.gameObject);
-		}
-	}
-	
-	void OnTriggerEnter(Collider c) {
-		if(c.gameObject.name == "ItemTriggerBox") {
-			print ("Hi!");
-			equipItem(c.transform.parent.gameObject.name);
-			Destroy(c.transform.parent.gameObject);
-			Destroy(c.gameObject);
 		}
 	}
 
 	
 	void equipItem(string itemName) {
+		if(itemName == "Bat") {
+			//Item logic goes here
+			print (gameObject.name + " got a bat!");
+		}
+		
+		if(itemName == "Gun") {
+			print (gameObject.name + " got a gun!");
+		}
+		
 	}
 	
 	void changeHitBox(string itemName) {
