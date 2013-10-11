@@ -5,7 +5,7 @@ public class CharacterScript : MonoBehaviour {
 	
 	public float movementSpeed = 10.0f;
 	public float jumpSpeed = 10.0f;
-	public float gravitySpeed = 1f;
+	public float gravitySpeed = 20f;
 	public float maxSpeed = 10.0f;
 	public float airFactor = .5f;
 	public string horizontalAxis = "Horizontal1";
@@ -52,12 +52,26 @@ public class CharacterScript : MonoBehaviour {
 		
 	}
 	
-	void OnTriggerEnter(Collider c) {
-		equipItem(c.gameObject.name);
-		Destroy(c.gameObject);
+	void OnControllerColliderHit(ControllerColliderHit hit) {
+		if(hit.gameObject.tag == "Gun" || hit.gameObject.tag == "Bat") {
+			equipItem(hit.transform.gameObject.tag);
+			Destroy(hit.gameObject);
+		}
 	}
 
 	
 	void equipItem(string itemName) {
+		if(itemName == "Bat") {
+			//Item logic goes here
+			print (gameObject.name + " got a bat!");
+		}
+		
+		if(itemName == "Gun") {
+			print (gameObject.name + " got a gun!");
+		}
+		
+	}
+	
+	void changeHitBox(string itemName) {
 	}
 }
