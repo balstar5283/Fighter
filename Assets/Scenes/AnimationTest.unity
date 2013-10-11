@@ -325,10 +325,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1481922707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5e08d33f0b975e4db676498244f4a95, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ee1272b6bf2ddb459fad10c66180097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthFactor: .100000001
+  growthFactor: .00999999978
   width: 0
   height: 0
   textureOffset: {x: 0, y: 0}
@@ -382,7 +382,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1481922707}
   m_LocalRotation: {x: -3.09086232e-08, y: .707106829, z: -.707106829, w: -3.09086232e-08}
-  m_LocalPosition: {x: 0, y: 6.11724281, z: 0}
+  m_LocalPosition: {x: 0, y: 6.11724281, z: -.275571644}
   m_LocalScale: {x: 1.83809102, y: 1, z: .824859858}
   m_Children: []
   m_Father: {fileID: 0}
@@ -416,6 +416,59 @@ Transform:
   - {fileID: 1930903945}
   - {fileID: 519282535}
   m_Father: {fileID: 0}
+--- !u!1 &1597847044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1597847045}
+  - 23: {fileID: 1597847046}
+  - 33: {fileID: 1597847047}
+  m_Layer: 0
+  m_Name: Attack Frame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1597847045
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1597847044}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -.100000001, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1947509227}
+--- !u!23 &1597847046
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1597847044}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 35abaf728725c6f478bc9a4bb89fdf99, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!33 &1597847047
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1597847044}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1902127470
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +669,8 @@ Transform:
   m_LocalRotation: {x: -3.09086232e-08, y: .707106829, z: -.707106829, w: -3.09086232e-08}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.20994604, y: 1.20994639, z: 1.20994639}
-  m_Children: []
+  m_Children:
+  - {fileID: 1597847045}
   m_Father: {fileID: 0}
 --- !u!114 &1947509228
 MonoBehaviour:
@@ -624,7 +678,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1947509223}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a4345a4e9528ad46bced0f3d124cf47, type: 3}
   m_Name: 
@@ -657,15 +711,18 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1947509223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bce3171cc4b4f4e4a88fe284c0c78542, type: 3}
+  m_Script: {fileID: 11500000, guid: fd2c716104d152e48a46dd5f6aa03b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentFrameCount: 0
   currentFrameIndex: 0
-  characterDirectionOffset: 0
   currentAnimation: []
+  currentAttackAnimation: []
+  currentAnimationString: 
+  callback: {fileID: 0}
+  hideAttackArm: 0
   walk:
   - {x: .5, y: .375, z: 7}
   - {x: .625, y: .375, z: 7}
@@ -675,5 +732,35 @@ MonoBehaviour:
   - {x: 0, y: .375, z: 15}
   - {x: .125, y: .375, z: 15}
   - {x: .25, y: .375, z: 15}
+  jump:
+  - {x: 0, y: .125, z: 5}
+  - {x: .125, y: .125, z: 1000}
+  victory:
+  - {x: .375, y: .125, z: 1000}
+  defeat:
+  - {x: .25, y: 0, z: 40}
+  - {x: .375, y: 0, z: 1000}
+  punch:
+  - {x: 0, y: .875, z: 5}
+  - {x: .125, y: .875, z: 5}
+  - {x: .25, y: .875, z: 9}
+  - {x: .125, y: .875, z: 5}
+  - {x: 0, y: .875, z: 5}
+  kick:
+  - {x: .25, y: .125, z: 1000}
+  displayGun:
+  - {x: .375, y: .875, z: 1000}
+  gunFire:
+  - {x: .5, y: .875, z: 5}
+  - {x: .625, y: .875, z: 5}
+  - {x: .75, y: .875, z: 5}
+  displayBat:
+  - {x: 0, y: .75, z: 1000}
+  swingBat:
+  - {x: .125, y: .75, z: 7}
+  - {x: .25, y: .75, z: 7}
+  - {x: .375, y: .75, z: 7}
+  blank:
+  - {x: .875, y: .875, z: 1000}
   currentPlaytype: 0
   reverseAnimation: 0
