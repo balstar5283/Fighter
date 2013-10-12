@@ -88,9 +88,7 @@ public class MovementAnimation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.anyKeyDown) {
-			playAnimation("kick");
-		}
+
 		//Reverse animation
 		if(reverseAnimation) {
 			
@@ -159,6 +157,11 @@ public class MovementAnimation : MonoBehaviour {
 		switch (animationType) {
 		case "walk":
 			currentAnimation = walk;
+			currentPlaytype = PlayType.LOOP;
+			break;
+		case "backWalk":
+			currentAnimation = walk;
+			reverseAnimation = true;
 			currentPlaytype = PlayType.LOOP;
 			break;
 		case "idle":
