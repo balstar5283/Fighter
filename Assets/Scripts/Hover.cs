@@ -38,6 +38,14 @@ public class Hover : MonoBehaviour {
 					currentStep--;
 				}
 			}
+			else if (Input.GetKeyDown (KeyCode.Return))
+			{
+					
+				if (currentStep == 0)
+				{
+					Application.LoadLevel("blank");
+				}
+			}
 		
 	}
 }
