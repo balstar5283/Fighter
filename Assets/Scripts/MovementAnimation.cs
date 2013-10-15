@@ -6,17 +6,18 @@ public class MovementAnimation : MonoBehaviour {
 	public int currentFrameCount;
 	public int currentFrameIndex;
 	public Vector3[] currentAnimation;
-	public Vector3[] currentAttackAnimation;
 	public string currentAnimationString;
 	
 	//Used to reference the gameobject which needs to be notified of events
 	public GameObject callback;
 	
 	public bool hideAttackArm = false;
+	//Used to send message for attack
+	public bool isAttack = false;
+	public int attackFrame = 0;
 	/*
 	 * Animation data for walk, idle, jump
 	 */
-	
 	// XOffset, YOffset, Framecount
 	public Vector3[] walk = {
 		new Vector3(.5f, .375f, 7),
@@ -35,6 +36,9 @@ public class MovementAnimation : MonoBehaviour {
 	};
 	public Vector3[] victory = {
 		new Vector3(.375f, .125f, 1000)
+	};
+	public Vector3[] damage = {
+		new Vector3(0, .625f, 20)
 	};
 	public Vector3[] defeat = {
 		new Vector3(.25f, 0, 40),
@@ -75,7 +79,6 @@ public class MovementAnimation : MonoBehaviour {
 	};
 	
 	
-	
 	public enum PlayType {LOOP, PLAYONCE, CLAMP, ZIGZAG};
 	public PlayType currentPlaytype;
 	//Use for Zigzag playtype
@@ -83,7 +86,7 @@ public class MovementAnimation : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		playAnimation("idle");
+		//playAnimation("idle");
 	}
 	
 	// Update is called once per frame
@@ -151,6 +154,7 @@ public class MovementAnimation : MonoBehaviour {
 	
 	public void playAnimation(string animationType) {
 		reverseAnimation = false;
+		isAttack = false;
 		currentFrameCount = 0;
 		currentFrameIndex = 0;
 		currentAnimationString = animationType;
@@ -172,6 +176,10 @@ public class MovementAnimation : MonoBehaviour {
 			currentAnimation = jump;
 			currentPlaytype = PlayType.CLAMP;
 			break;
+		case "damage":
+			currentAnimation = damage;
+			currentPlaytype = PlayType.PLAYONCE;
+			break;
 		case "victory":
 			currentAnimation = victory;
 			currentPlaytype = PlayType.CLAMP;
@@ -183,23 +191,29 @@ public class MovementAnimation : MonoBehaviour {
 		case "punch":
 			currentAnimation = punch;
 			currentPlaytype = PlayType.PLAYONCE;
+			isAttack = true;
+			attackFrame = 2;
 			break;
 		case "kick":
 			currentAnimation = kick;
 			currentPlaytype = PlayType.CLAMP;
+			isAttack = true;
+			attackFrame = 0;
 			break;
 		case "gunFire":
 			currentAnimation = gunFire;
 			currentPlaytype = PlayType.PLAYONCE;
+			isAttack = true;
+			attackFrame = 0;
 			break;
 		case "swingBat":
 			currentAnimation = swingBat;
 			currentPlaytype = PlayType.PLAYONCE;
+			isAttack = true;
+			attackFrame = 0;
 			break;
 		case "blank":
-			if (callback != null) {
-				callback.SendMessage("playAnimationDone", currentAnimationString);
-			}
+			SendMessageUpwards("playAnimationDone", currentAnimationString);
 			currentAnimation = blank;
 			currentPlaytype = PlayType.CLAMP;
 			break;
@@ -226,6 +240,12 @@ public class MovementAnimation : MonoBehaviour {
 			currentAnimation[currentFrameIndex].y);
 		if (hideAttackArm) {
 			offset.y -= .125f;
+		}
+		
+		if (isAttack && (currentFrameIndex == attackFrame)) {
+			//Send message to activate attackFrame
+			SendMessageUpwards("doAttack", currentAnimationString);
+			isAttack = false;
 		}
 		renderer.material.SetTextureOffset("_MainTex", offset);
 	}

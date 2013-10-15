@@ -10,14 +10,15 @@ public class CharacterScript : MonoBehaviour {
 	public float airFactor = .5f;
 	public string horizontalAxis = "Horizontal1";
 	public string jumpAxis = "Jump1";
+	public Transform otherPlayer;
 	private string itemName;
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
-
+	private AnimationController animController;
 
 	// Use this for initialization
 	void Start () {	
-		
+		animController = GetComponentInChildren<AnimationController>();
 		controller = GetComponent<CharacterController> ();
 	}
 	
@@ -48,7 +49,16 @@ public class CharacterScript : MonoBehaviour {
 		
 		if(moveDirection.x < -maxSpeed) {
 			moveDirection.x = -maxSpeed;
-		}	
+		}
+		
+		int facing;
+		if (otherPlayer.position.x > transform.position.x) {
+			facing = 0;
+		}
+		else {
+			facing = 1;
+		}
+		animController.updateState(moveDirection.x, controller.isGrounded, facing);
 		
 	}
 	
