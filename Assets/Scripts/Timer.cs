@@ -2,48 +2,114 @@
 using System.Collections;
 
 public class Timer : MonoBehaviour {
-	static int gameRound = 1;
-	public bool roundShown = false;
-	public int time = 4;
+	
+	public int maxRound = 3;
+	public static int currentRound = 1;
+	
+	private int time = 15;
 	public bool gameOver = false;
-	public bool gameStart = true;
+	
+	private GameObject roundAnimation;
+	private RoundAnimation ra;
+	
+	private GameObject healthBar;
+	private HealthBar hb;
+	
 	
 	// Use this for initialization
 	void Start () {
+		roundAnimation = GameObject.Find ("RoundDisplay");
+		ra = (RoundAnimation)roundAnimation.GetComponent(typeof(RoundAnimation));
+		
+		healthBar = GameObject.Find("HealthBar");
+		hb = (HealthBar) healthBar.GetComponent(typeof(HealthBar));
+		
+	
 		InvokeRepeating("decrease", (float) 0.0, (float) 1.0);
-		roundShown = true;
+
+		
+		if(currentRound == 1)
+		{
+			StartCoroutine( "RoundShown" );
+			ra.setAnimation(0,3);
+			ra.renderer.enabled = true;
+		}
+		else if (currentRound == 2)
+		{
+			StartCoroutine( "RoundShown" );
+			ra.setAnimation(1,3);
+			ra.renderer.enabled = true;
+		}
+		else if (currentRound == 3)
+		{
+			StartCoroutine( "RoundShown" );
+			ra.setAnimation(0,2);
+			ra.renderer.enabled = true;
+		}
+		else 
+		{
+			
+			
+		}
+	
+		
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		
 		if(gameOver)
 		{
-			StartCoroutine( "DelayStart" );
+			if(hb.player1Health == hb.player2Health)
+			{
+				StartCoroutine( "RoundShown" );
+				ra.setAnimation(0,0);
+				ra.renderer.enabled = true;
+				StartCoroutine( "RoundStart" );
+			}
+			else if (hb.player1Health > hb.player2Health)
+			{
+				StartCoroutine( "RoundShown" );
+				ra.setAnimation(0,1);
+				ra.renderer.enabled = true;
+				StartCoroutine( "RoundStart" );
+	
+			}
+			else if (hb.player2Health > hb.player1Health)
+			{
+				StartCoroutine( "RoundShown" );
+				ra.setAnimation(1,1);
+				ra.renderer.enabled = true;
+				StartCoroutine( "RoundStart" );
+	
+			}
 		}
 	}
 	
 	void OnGUI() {
-		//GUI.Box (new Rect(10, 10, Screen.width / 2 / (maxHealth/currentHealth), 20), currentHealth + "/" + maxHealth);	
-		GUI.Box (new Rect(425, 20, Screen.width / 5, 50), time.ToString());
-		
-		if(gameOver) {
-			GUI.Box (new Rect(425, Screen.height/3, Screen.width / 5, 50), "Game Over");	
-		}
-		
-		if (roundShown)
-		{
-			//StartCoroutine( "DelayStart" );
-			if(gameStart)
-			{
-				StartCoroutine( "RoundShown" );
-				GUI.Box (new Rect(425, Screen.height/3, Screen.width / 5, 50), "Round " + gameRound);	
-		
-			}
-			
-			//roundShown = false;
-		}
+		GUI.Box (new Rect((Screen.width/2) - 75 , 20, 150, 50), time.ToString());
 	}
+	
+	public void playerWon(int player)
+	{
 		
+		CancelInvoke("decrease");
+		StartCoroutine( "RoundShown" );
+		
+		if(player == 1)
+		{
+			ra.setAnimation(0,1);
+		}
+		if(player == 2)
+		{
+			ra.setAnimation(1,1);
+
+		}
+		
+		ra.renderer.enabled = true;
+		StartCoroutine( "RoundStart" );
+
+	}
 	
 	void decrease()
 	{
@@ -59,22 +125,23 @@ public class Timer : MonoBehaviour {
 		}
 	}
 	
-	IEnumerator DelayStart() {
-		yield return new WaitForSeconds( 5 );
-		gameRound++;
-		Application.LoadLevel("blank");
-		gameOver = false;
-		roundShown = true;
-	}
-	
 	IEnumerator RoundShown() {
+		
+		yield return new WaitForSeconds( 3 );
+		ra.renderer.enabled = false;
+	}
+	
+	
+	IEnumerator RoundStart() {
+		
 		yield return new WaitForSeconds( 2 );
-		roundShown = false;
+		gameOver = false;
+		currentRound++;
+		Application.LoadLevel("blank");
+		
 	}
 	
 
 
 
-	
-	
 }
