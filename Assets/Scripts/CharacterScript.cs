@@ -34,6 +34,7 @@ public class CharacterScript : MonoBehaviour {
 				moveDirection.y = jumpSpeed;
 
 			}
+
 		}
 			
 		else {
@@ -82,6 +83,19 @@ public class CharacterScript : MonoBehaviour {
 		
 	}
 	
-	void changeHitBox(string itemName) {
+	void doAttack(string attackName) {
+		switch(attackName) {
+		case "punch":
+			
+			
+			break;
+		case "kick":
+			break;
+		case "gunFire":
+			break;
+		case "swingBat":
+			break;
+		}
+			
 	}
 }

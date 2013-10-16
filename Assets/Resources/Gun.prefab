@@ -107,7 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  timeOut: 5
+  flickerTime: .25
+  timer2: 0
+  timeOut: 10
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
