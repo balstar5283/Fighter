@@ -23,11 +23,11 @@ public class HealthBar : MonoBehaviour {
 	
 		if (Input.GetKeyDown (KeyCode.Z))
 		{
-			 gameObject.SendMessage("ApplyDamageToPlayer1", 5.0F);
+			 gameObject.SendMessage("ApplyDamageToPlayer1", 50.0F);
 		}
 		if (Input.GetKeyDown (KeyCode.X))
 		{
-			 gameObject.SendMessage("ApplyDamageToPlayer2", 5.0F);
+			 gameObject.SendMessage("ApplyDamageToPlayer2", 50.0F);
 		}
 	
 	}
