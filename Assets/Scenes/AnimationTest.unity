@@ -325,7 +325,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1481922707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ee1272b6bf2ddb459fad10c66180097, type: 3}
+  m_Script: {fileID: 11500000, guid: e00aa790cdcdfd8409ee6df701aeda40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   growthFactor: .00999999978
@@ -456,7 +456,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 35abaf728725c6f478bc9a4bb89fdf99, type: 2}
+  - {fileID: 2100000, guid: 698fa95423b7c7643841eed800a1aeb4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -634,7 +634,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 35abaf728725c6f478bc9a4bb89fdf99, type: 2}
+  - {fileID: 2100000, guid: d34238e7bafb1814da22a5bc435101fc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -711,56 +711,16 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1947509223}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2c716104d152e48a46dd5f6aa03b4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 43677bc1874426140af1e3e1c69607b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentFrameCount: 0
-  currentFrameIndex: 0
-  currentAnimation: []
-  currentAttackAnimation: []
-  currentAnimationString: 
-  callback: {fileID: 0}
-  hideAttackArm: 0
-  walk:
-  - {x: .5, y: .375, z: 7}
-  - {x: .625, y: .375, z: 7}
-  - {x: .75, y: .375, z: 7}
-  - {x: .875, y: .375, z: 7}
-  idle:
-  - {x: 0, y: .375, z: 15}
-  - {x: .125, y: .375, z: 15}
-  - {x: .25, y: .375, z: 15}
-  jump:
-  - {x: 0, y: .125, z: 5}
-  - {x: .125, y: .125, z: 1000}
-  victory:
-  - {x: .375, y: .125, z: 1000}
-  defeat:
-  - {x: .25, y: 0, z: 40}
-  - {x: .375, y: 0, z: 1000}
-  punch:
-  - {x: 0, y: .875, z: 5}
-  - {x: .125, y: .875, z: 5}
-  - {x: .25, y: .875, z: 9}
-  - {x: .125, y: .875, z: 5}
-  - {x: 0, y: .875, z: 5}
-  kick:
-  - {x: .25, y: .125, z: 1000}
-  displayGun:
-  - {x: .375, y: .875, z: 1000}
-  gunFire:
-  - {x: .5, y: .875, z: 5}
-  - {x: .625, y: .875, z: 5}
-  - {x: .75, y: .875, z: 5}
-  displayBat:
-  - {x: 0, y: .75, z: 1000}
-  swingBat:
-  - {x: .125, y: .75, z: 7}
-  - {x: .25, y: .75, z: 7}
-  - {x: .375, y: .75, z: 7}
-  blank:
-  - {x: .875, y: .875, z: 1000}
-  currentPlaytype: 0
-  reverseAnimation: 0
+  isJumping: 0
+  isWalking: 0
+  setWeapon: 0
+  facing: 0
+  xDirection: 0
+  currentWeapon: 0
+  characterSprite: {fileID: 0}
+  attackSprite: {fileID: 0}
