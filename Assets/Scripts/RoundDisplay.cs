@@ -104,6 +104,14 @@ public class RoundDisplay : MonoBehaviour {
 		renderer.material.SetTextureOffset("_MainTex", textureOffset);
 	}
 	
+	public void displayDraw() {
+		currentDisplayTime = 0;
+		showMessage = true;
+		textureOffset.x = 0;
+		textureOffset.y = 0;
+		renderer.material.SetTextureOffset("_MainTex", textureOffset);
+	}
+	
 	/**
 	 * Display winner
 	 * @param winner Show which player won. Takes values 1 or 2. Any other value will return draw.

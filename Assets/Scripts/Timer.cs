@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour {
 	public bool gameOver = false;
 	
 	private GameObject roundAnimation;
-	private RoundAnimation ra;
+	private RoundDisplay rd;
 	
 	private GameObject healthBar;
 	private HealthBar hb;
@@ -19,15 +19,16 @@ public class Timer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		roundAnimation = GameObject.Find ("RoundDisplay");
-		ra = (RoundAnimation)roundAnimation.GetComponent(typeof(RoundAnimation));
+		rd = (RoundDisplay)roundAnimation.GetComponent(typeof(RoundDisplay));
 		
 		healthBar = GameObject.Find("HealthBar");
 		hb = (HealthBar) healthBar.GetComponent(typeof(HealthBar));
 		
 	
 		InvokeRepeating("decrease", (float) 0.0, (float) 1.0);
-
 		
+		rd.displayRound(currentRound);
+		/*
 		if(currentRound == 1)
 		{
 			StartCoroutine( "RoundShown" );
@@ -50,7 +51,7 @@ public class Timer : MonoBehaviour {
 		{
 			
 			
-		}
+		}*/
 	
 		
 	}
@@ -63,23 +64,24 @@ public class Timer : MonoBehaviour {
 			if(hb.player1Health == hb.player2Health)
 			{
 				StartCoroutine( "RoundShown" );
-				ra.setAnimation(0,0);
-				ra.renderer.enabled = true;
+				//rd.setAnimation(0,0);
+				rd.displayDraw();
+				rd.renderer.enabled = true;
 				StartCoroutine( "RoundStart" );
 			}
 			else if (hb.player1Health > hb.player2Health)
 			{
 				StartCoroutine( "RoundShown" );
-				ra.setAnimation(0,1);
-				ra.renderer.enabled = true;
+				rd.displayWinner(1);
+				rd.renderer.enabled = true;
 				StartCoroutine( "RoundStart" );
 	
 			}
 			else if (hb.player2Health > hb.player1Health)
 			{
 				StartCoroutine( "RoundShown" );
-				ra.setAnimation(1,1);
-				ra.renderer.enabled = true;
+				rd.displayWinner(2);
+				rd.renderer.enabled = true;
 				StartCoroutine( "RoundStart" );
 	
 			}
@@ -95,18 +97,20 @@ public class Timer : MonoBehaviour {
 		
 		CancelInvoke("decrease");
 		StartCoroutine( "RoundShown" );
-		
+		rd.displayWinner(player);
+		/*
 		if(player == 1)
 		{
-			ra.setAnimation(0,1);
+			//rd.setAnimation(0,1);
+			rd.displayWinner(player);
 		}
 		if(player == 2)
 		{
-			ra.setAnimation(1,1);
+			rd.setAnimation(1,1);
 
 		}
-		
-		ra.renderer.enabled = true;
+		*/
+		rd.renderer.enabled = true;
 		StartCoroutine( "RoundStart" );
 
 	}
@@ -128,7 +132,7 @@ public class Timer : MonoBehaviour {
 	IEnumerator RoundShown() {
 		
 		yield return new WaitForSeconds( 3 );
-		ra.renderer.enabled = false;
+		rd.renderer.enabled = false;
 	}
 	
 	
@@ -137,7 +141,7 @@ public class Timer : MonoBehaviour {
 		yield return new WaitForSeconds( 2 );
 		gameOver = false;
 		currentRound++;
-		Application.LoadLevel("blank");
+		Application.LoadLevel("FightScene");
 		
 	}
 	
