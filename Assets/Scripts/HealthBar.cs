@@ -9,9 +9,13 @@ public class HealthBar : MonoBehaviour {
 	public int player1Health = 100;
 	public int player2Health = 100;
 	
+	private GameObject timer;
+	private Timer t;
+	
 	// Use this for initialization
 	void Start () {
-	
+		timer = GameObject.Find ("Timer");
+		t = (Timer)timer.GetComponent(typeof(Timer));
 	}
 	
 	// Update is called once per frame
@@ -21,31 +25,52 @@ public class HealthBar : MonoBehaviour {
 		{
 			 gameObject.SendMessage("ApplyDamageToPlayer1", 5.0F);
 		}
+		if (Input.GetKeyDown (KeyCode.X))
+		{
+			 gameObject.SendMessage("ApplyDamageToPlayer2", 5.0F);
+		}
 	
 	}
 	
 	void OnGUI() {
 		
 		
-		GUI.Box (new Rect(20, 20, Screen.width / 3 / (maxHealth/maxHealth), 50),"");
-		GUI.Box (new Rect(Screen.width-20-Screen.width / 3 / (maxHealth/maxHealth), 20, Screen.width / 3 / (maxHealth/maxHealth), 50),"");
+		GUI.Box (new Rect(20, 20, Screen.width / 3 / (maxHealth/maxHealth), 50),player1Health + "/" + maxHealth);
 		
-		GUI.Box (new Rect(20, 20, Screen.width / 3 / (maxHealth/ (float)player1Health), 50), player1Health + "/" + maxHealth);
-		//GUI.Box (new Rect(Screen.width-20-Screen.width / 3 / (maxHealth/ (float)player2Health), 20, Screen.width / 3 / (maxHealth/maxHealth), 50),player2Health + "/" + maxHealth);
-		//GUI.Box (new Rect(Screen.width-20-Screen.width / 3 / (maxHealth/ (float)player2Health) - (Screen.width / 3 / (maxHealth/maxHealth)), 20, Screen.width / 3 / (maxHealth/maxHealth), 50),player2Health + "/" + maxHealth);
+		if(player1Health > 0)
+		{
+			GUI.Box (new Rect(20, 20, Screen.width / 3 / (maxHealth/ (float)player1Health), 50), "" );
+		}
+			
+		GUI.Box (new Rect(Screen.width-20-Screen.width / 3 / (maxHealth/maxHealth), 20, Screen.width / 3 / (maxHealth/maxHealth), 50),player2Health + "/" + maxHealth);
 		
+		if(player2Health > 0)
+		{
+			float offset = Screen.width / 3 / (maxHealth/maxHealth) - Screen.width / 3 / (maxHealth/ (float)player2Health);
+			GUI.Box (new Rect( (Screen.width-20-Screen.width / 3 / (maxHealth/maxHealth))+offset, 20, (Screen.width / 3 / (maxHealth/ (float)player2Health)), 50), "");
+		}
 		
-		//GUI.Box ();
-
 	}
 	
-	void ApplyDamageToPlayer1(int damage) {
+	public void ApplyDamageToPlayer1(int damage) {
+		
 		player1Health-= damage;
-		Debug.Log ( Screen.width / 2 /(maxHealth/player1Health));
+		if(player1Health <= 0)
+		{
+			player1Health = 0;
+			t.playerWon(2);
+		}
 	}
 	
-	void ApplyDamageToPlayer2(int damage) {
+	public void ApplyDamageToPlayer2(int damage) {
+		
 		player2Health-= damage;
+		
+		if(player2Health <= 0)
+		{
+			player2Health = 0;
+			t.playerWon(1);
+		}
 	}
 	
 	

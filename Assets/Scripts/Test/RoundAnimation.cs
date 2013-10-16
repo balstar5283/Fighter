@@ -33,4 +33,15 @@ public class RoundAnimation : MonoBehaviour {
 		}
 		
 	}
+	
+	public void setAnimation(int x, int y)
+	{
+		float offsetX = (float)( x * 0.5 );
+		float offsetY = (float) (y * 0.25);
+		showRound = true;
+		renderer.material.SetTextureOffset("_MainTex", textureOffset);
+		renderer.material.SetTextureOffset("_MainTex", new Vector2(offsetX, offsetY));
+		transform.localScale += new Vector3(0 * growthFactor, 0, 0 * growthFactor);
+		
+	}
 }
