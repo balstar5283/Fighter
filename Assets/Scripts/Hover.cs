@@ -20,32 +20,40 @@ public class Hover : MonoBehaviour {
 		//gameObject.transform.Translate( new Vector3( 0, speed * Input.GetAxis( "Vertical" ) * Time.deltaTime, 0 ), Space.World );
 		//step += 0.01f;
 
-			if (Input.GetKeyDown (KeyCode.DownArrow))
+		if (Input.GetKeyDown (KeyCode.DownArrow))
+		{
+				
+			if(currentStep < maxStep)
 			{
-					
-				if(currentStep < maxStep)
-				{
-					gameObject.transform.Translate(0,-0.4f,0);
-					currentStep++;
-				}
-			}	
-			else if (Input.GetKeyDown (KeyCode.UpArrow))
-			{
-					
-				if(currentStep > 0)
-				{
-					gameObject.transform.Translate(0,+0.4f,0);
-					currentStep--;
-				}
+				gameObject.transform.Translate(0,-0.4f,0);
+				currentStep++;
 			}
-			else if (Input.GetKeyDown (KeyCode.Return))
+		}	
+		else if (Input.GetKeyDown (KeyCode.UpArrow))
+		{
+				
+			if(currentStep > 0)
 			{
-					
-				if (currentStep == 0)
-				{
-					Application.LoadLevel("blank");
-				}
+				gameObject.transform.Translate(0,+0.4f,0);
+				currentStep--;
 			}
+		}
+		else if (Input.GetKeyDown (KeyCode.Return))
+		{
+				
+			if (currentStep == 0)
+			{
+				Application.LoadLevel("blank");
+			}
+			else if( currentStep == 1)
+			{
+				
+			}
+			else if (currentStep == 2)
+			{
+				Application.Quit();
+			}
+		}
 		
 	}
 }

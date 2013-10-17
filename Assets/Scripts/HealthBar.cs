@@ -23,11 +23,11 @@ public class HealthBar : MonoBehaviour {
 	
 		if (Input.GetKeyDown (KeyCode.Z))
 		{
-			 gameObject.SendMessage("ApplyDamageToPlayer1", 5.0F);
+			 gameObject.SendMessage("ApplyDamageToPlayer1", 50.0F);
 		}
 		if (Input.GetKeyDown (KeyCode.X))
 		{
-			 gameObject.SendMessage("ApplyDamageToPlayer2", 5.0F);
+			 gameObject.SendMessage("ApplyDamageToPlayer2", 50.0F);
 		}
 	
 	}
@@ -53,23 +53,27 @@ public class HealthBar : MonoBehaviour {
 	}
 	
 	public void ApplyDamageToPlayer1(int damage) {
-		
+		if (t.isRoundOver()) {
+			return;
+		}
 		player1Health-= damage;
 		if(player1Health <= 0)
 		{
 			player1Health = 0;
-			t.playerWon(2);
+			t.endGame();
 		}
 	}
 	
 	public void ApplyDamageToPlayer2(int damage) {
-		
+		if (t.isRoundOver()) {
+			return;
+		}
 		player2Health-= damage;
 		
 		if(player2Health <= 0)
 		{
 			player2Health = 0;
-			t.playerWon(1);
+			t.endGame();
 		}
 	}
 	
