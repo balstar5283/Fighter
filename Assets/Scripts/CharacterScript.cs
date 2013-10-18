@@ -8,8 +8,14 @@ public class CharacterScript : MonoBehaviour {
 	public float gravitySpeed = 20f;
 	public float maxSpeed = 10.0f;
 	public float airFactor = .5f;
+	public float pullDown = 50f;
+	public int attacksLeft = 3;
 	public string horizontalAxis = "Horizontal1";
 	public string jumpAxis = "Jump1";
+	public int facing;
+	public string attackButton = "Fire1";
+	public bool isJumping;
+	public bool attackDone = true;
 	public Transform otherPlayer;
 	private string itemName;
 	private Vector3 moveDirection = Vector3.zero;
@@ -25,14 +31,19 @@ public class CharacterScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		if(transform.position.z != 0.0f) {
+			transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
+		}
+		
 		if(controller.isGrounded) {
+			isJumping = false;
 			moveDirection = new Vector3(Input.GetAxis(horizontalAxis), 0, 0);
 			moveDirection = transform.TransformDirection(moveDirection);
 			moveDirection *= movementSpeed;
 						
 			if(Input.GetButtonDown(jumpAxis)) {
+				isJumping = true;
 				moveDirection.y = jumpSpeed;
-
 			}
 
 		}
@@ -41,9 +52,18 @@ public class CharacterScript : MonoBehaviour {
 			moveDirection.x += Input.GetAxis(horizontalAxis) * airFactor;
 		}
 
-		moveDirection.y -= gravitySpeed * Time.deltaTime;
+		if(isJumping) {
+			moveDirection.y -= gravitySpeed * Time.deltaTime;
+		}
+		
+		else{
+			moveDirection.y -= gravitySpeed * Time.deltaTime * pullDown;
+		}
+		
+		//Move player
 		controller.Move(moveDirection * Time.deltaTime);
 		
+		//Maintain max speed
 		if(moveDirection.x > maxSpeed) {
 			moveDirection.x = maxSpeed;
 		}
@@ -52,7 +72,14 @@ public class CharacterScript : MonoBehaviour {
 			moveDirection.x = -maxSpeed;
 		}
 		
-		int facing;
+		//Attack!
+		if(Input.GetButtonDown(attackButton)) {
+			animController.performAttack();
+			attackDone = false;
+			attacksLeft--;
+		}
+		
+		//Face players at one another
 		if (otherPlayer.position.x > transform.position.x) {
 			facing = 0;
 		}
@@ -65,37 +92,39 @@ public class CharacterScript : MonoBehaviour {
 	
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		if(hit.gameObject.tag == "Gun" || hit.gameObject.tag == "Bat") {
+			attacksLeft = 3;
 			equipItem(hit.transform.gameObject.tag);
 			Destroy(hit.gameObject);
 		}
 	}
-
 	
-	void equipItem(string itemName) {
-		if(itemName == "Bat") {
-			//Item logic goes here
-			print (gameObject.name + " got a bat!");
-		}
-		
-		if(itemName == "Gun") {
-			print (gameObject.name + " got a gun!");
-		}
-		
-	}
-	
-	void doAttack(string attackName) {
-		switch(attackName) {
+	public void playAnimationDone(string type) {
+		switch(type) {
 		case "punch":
-			
-			
+			attackDone = true;
 			break;
 		case "kick":
 			break;
 		case "gunFire":
+			attackDone = true;
 			break;
 		case "swingBat":
+			attackDone = true;
 			break;
 		}
-			
+	}
+	
+	void equipItem(string itemName) {
+		if(itemName == "Bat") {
+			animController.setWeapon(AnimationController.WeaponType.BAT);
+			print (gameObject.name + " got a bat!");
+		}
+		
+		if(itemName == "Gun") {
+			animController.setWeapon(AnimationController.WeaponType.GUN);
+			print (gameObject.name + " got a gun!");
+		}
+		
+		
 	}
 }
