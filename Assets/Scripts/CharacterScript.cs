@@ -15,6 +15,7 @@ public class CharacterScript : MonoBehaviour {
 	public int facing;
 	public string attackButton = "Fire1";
 	public bool isJumping;
+	public bool isTouchingPlatform = false;
 	public bool attackDone = true;
 	public Transform otherPlayer;
 	private string itemName;
@@ -35,7 +36,7 @@ public class CharacterScript : MonoBehaviour {
 			transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
 		}
 		
-		if(controller.isGrounded) {
+		if(controller.isGrounded && !isTouchingPlatform) {
 			isJumping = false;
 			moveDirection = new Vector3(Input.GetAxis(horizontalAxis), 0, 0);
 			moveDirection = transform.TransformDirection(moveDirection);
@@ -96,6 +97,10 @@ public class CharacterScript : MonoBehaviour {
 			equipItem(hit.transform.gameObject.tag);
 			Destroy(hit.gameObject);
 		}
+		
+		if(hit.gameObject.name == "Platform") {
+			isTouchingPlatform = true;
+		}
 	}
 	
 	public void playAnimationDone(string type) {
@@ -116,12 +121,12 @@ public class CharacterScript : MonoBehaviour {
 	
 	void equipItem(string itemName) {
 		if(itemName == "Bat") {
-			animController.setWeapon(AnimationController.WeaponType.BAT);
+			animController.updateWeapon(AnimationController.WeaponType.BAT);
 			print (gameObject.name + " got a bat!");
 		}
 		
 		if(itemName == "Gun") {
-			animController.setWeapon(AnimationController.WeaponType.GUN);
+			animController.updateWeapon(AnimationController.WeaponType.GUN);
 			print (gameObject.name + " got a gun!");
 		}
 		
