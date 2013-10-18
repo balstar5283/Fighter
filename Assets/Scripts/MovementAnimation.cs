@@ -8,9 +8,6 @@ public class MovementAnimation : MonoBehaviour {
 	public Vector3[] currentAnimation;
 	public string currentAnimationString;
 	
-	//Used to reference the gameobject which needs to be notified of events
-	public GameObject callback;
-	
 	public bool hideAttackArm = false;
 	//Used to send message for attack
 	public bool isAttack = false;
@@ -107,6 +104,7 @@ public class MovementAnimation : MonoBehaviour {
 					reverseAnimation = false;
 					break;
 				case PlayType.PLAYONCE:
+					SendMessageUpwards("playAnimationDone", currentAnimationString);
 					playAnimation("blank");
 					reverseAnimation = false;
 					break;
@@ -135,6 +133,7 @@ public class MovementAnimation : MonoBehaviour {
 					reverseAnimation = true;
 					break;
 				case PlayType.PLAYONCE:
+					SendMessageUpwards("playAnimationDone", currentAnimationString);
 					playAnimation("blank");
 					break;
 				case PlayType.CLAMP:
@@ -213,7 +212,6 @@ public class MovementAnimation : MonoBehaviour {
 			attackFrame = 0;
 			break;
 		case "blank":
-			SendMessageUpwards("playAnimationDone", currentAnimationString);
 			currentAnimation = blank;
 			currentPlaytype = PlayType.CLAMP;
 			break;
@@ -244,7 +242,7 @@ public class MovementAnimation : MonoBehaviour {
 		
 		if (isAttack && (currentFrameIndex == attackFrame)) {
 			//Send message to activate attackFrame
-			SendMessageUpwards("doAttack", currentAnimationString);
+			//TODO: Activate attack hitbox
 			isAttack = false;
 		}
 		renderer.material.SetTextureOffset("_MainTex", offset);

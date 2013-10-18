@@ -4,7 +4,7 @@ using System.Collections;
 public class CharacterScript : MonoBehaviour {
 	
 	public float movementSpeed = 10.0f;
-	public float jumpSpeed = 10.0f;
+	public float jumpSpeed = 15.0f;
 	public float gravitySpeed = 20f;
 	public float maxSpeed = 10.0f;
 	public float airFactor = .5f;
