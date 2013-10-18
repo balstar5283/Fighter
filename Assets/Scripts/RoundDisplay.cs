@@ -11,11 +11,13 @@ public class RoundDisplay : MonoBehaviour {
 	public bool showMessage;
 	public bool hideMessage;
 	public bool showFight;
+	public bool startFight;
 	
 	public float displayTime = .5f;
 	public float currentDisplayTime = 0;
 	// Use this for initialization
 	void Start () {
+		startFight = false;
 		showFight = false;
 		hideMessage = false;
 		showFight = false;
@@ -57,8 +59,13 @@ public class RoundDisplay : MonoBehaviour {
 			else {
 				transform.localScale = new Vector3(0, 1, 0);
 				hideMessage = false;
+				if(startFight) {
+					startFight = false;
+					GameObject.Find("Timer").GetComponent<Timer>().startTimer();
+				}
 				//Determine if the fight screen has to be shown next
 				if(showFight) {
+					startFight = true;
 					showFight = false;
 					displayFight();
 				}
@@ -101,6 +108,14 @@ public class RoundDisplay : MonoBehaviour {
 		showMessage = true;
 		textureOffset.x = 0.5f;
 		textureOffset.y = 0.5f;
+		renderer.material.SetTextureOffset("_MainTex", textureOffset);
+	}
+	
+	public void displayDraw() {
+		currentDisplayTime = 0;
+		showMessage = true;
+		textureOffset.x = 0;
+		textureOffset.y = 0;
 		renderer.material.SetTextureOffset("_MainTex", textureOffset);
 	}
 	
