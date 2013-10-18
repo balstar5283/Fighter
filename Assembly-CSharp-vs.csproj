@@ -47,6 +47,7 @@
      <Compile Include="Assets\Scripts\AnimationController.cs" />
      <Compile Include="Assets\Scripts\CharacterScript.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\Hitbox.cs" />
      <Compile Include="Assets\Scripts\Hover.cs" />
      <Compile Include="Assets\Scripts\ItemFade.cs" />
      <Compile Include="Assets\Scripts\ItemScript.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\Scripts\Test\RoundAnimation.cs" />
      <Compile Include="Assets\Scripts\Test\WalkTest.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
+     <Compile Include="Assets\Scripts\Vibrate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
