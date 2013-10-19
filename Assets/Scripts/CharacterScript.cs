@@ -32,11 +32,14 @@ public class CharacterScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		isTouchingPlatform = false;
+		
 		if(transform.position.z != 0.0f) {
 			transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
 		}
 		
 		if(controller.isGrounded && !isTouchingPlatform) {
+			isTouchingPlatform = false;
 			isJumping = false;
 			moveDirection = new Vector3(Input.GetAxis(horizontalAxis), 0, 0);
 			moveDirection = transform.TransformDirection(moveDirection);
@@ -57,7 +60,7 @@ public class CharacterScript : MonoBehaviour {
 			moveDirection.y -= gravitySpeed * Time.deltaTime;
 		}
 		
-		else{
+		else {
 			moveDirection.y -= gravitySpeed * Time.deltaTime * pullDown;
 		}
 		
@@ -87,6 +90,7 @@ public class CharacterScript : MonoBehaviour {
 		else {
 			facing = 1;
 		}
+		
 		animController.updateState(moveDirection.x, controller.isGrounded, facing);
 		
 	}
@@ -98,7 +102,8 @@ public class CharacterScript : MonoBehaviour {
 			Destroy(hit.gameObject);
 		}
 		
-		if(hit.gameObject.name == "Platform") {
+		if(hit.gameObject.name == "Platform" && controller.isGrounded) {
+			isJumping = true;
 			isTouchingPlatform = true;
 		}
 	}
