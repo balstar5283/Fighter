@@ -360,6 +360,7 @@ GameObject:
   - 23: {fileID: 172292530}
   - 143: {fileID: 172292531}
   - 114: {fileID: 172292534}
+  - 114: {fileID: 172292535}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -430,10 +431,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  justTouchedPlatform: 0
   jumpSpeed: 15
   gravitySpeed: 30
   maxSpeed: 10
-  airFactor: .300000012
+  airFactor: .25
   pullDown: 50
   attacksLeft: 3
   horizontalAxis: Horizontal1
@@ -441,9 +443,19 @@ MonoBehaviour:
   facing: 0
   attackButton: Fire1
   isJumping: 0
-  isTouchingPlatform: 0
   attackDone: 1
   otherPlayer: {fileID: 1960322335}
+--- !u!114 &172292535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 172292529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175eb871e2a4c44fb50d1429b9419f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &261816991
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +895,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 398648684}
   m_LocalRotation: {x: .707106888, y: 0, z: 0, w: .707106769}
-  m_LocalPosition: {x: -5, y: -3, z: 0}
+  m_LocalPosition: {x: -5, y: -3.79643011, z: -2.15675186e-07}
   m_LocalScale: {x: 5.13209009, y: 2.34714103, z: 1}
   m_Children:
   - {fileID: 1489192879}
@@ -2323,6 +2335,7 @@ GameObject:
   - 23: {fileID: 1960322333}
   - 143: {fileID: 1960322332}
   - 114: {fileID: 1960322331}
+  - 114: {fileID: 1960322336}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Untagged
@@ -2342,6 +2355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  justTouchedPlatform: 0
   jumpSpeed: 15
   gravitySpeed: 20
   maxSpeed: 10
@@ -2353,7 +2367,6 @@ MonoBehaviour:
   facing: 0
   attackButton: Fire2
   isJumping: 0
-  isTouchingPlatform: 0
   attackDone: 1
   otherPlayer: {fileID: 172292533}
 --- !u!143 &1960322332
@@ -2407,6 +2420,17 @@ Transform:
   m_Children:
   - {fileID: 374766829}
   m_Father: {fileID: 0}
+--- !u!114 &1960322336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1960322330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175eb871e2a4c44fb50d1429b9419f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2079292365
 GameObject:
   m_ObjectHideFlags: 0

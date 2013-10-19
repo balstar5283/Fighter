@@ -4,6 +4,7 @@ using System.Collections;
 public class CharacterScript : MonoBehaviour {
 	
 	public float movementSpeed = 10.0f;
+	public bool justTouchedPlatform = false;
 	public float jumpSpeed = 10.0f;
 	public float gravitySpeed = 20f;
 	public float maxSpeed = 10.0f;
@@ -15,7 +16,6 @@ public class CharacterScript : MonoBehaviour {
 	public int facing;
 	public string attackButton = "Fire1";
 	public bool isJumping;
-	public bool isTouchingPlatform = false;
 	public bool attackDone = true;
 	public Transform otherPlayer;
 	private string itemName;
@@ -32,14 +32,16 @@ public class CharacterScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		isTouchingPlatform = false;
+		if(justTouchedPlatform = true) {
+			pullDown = 1f;
+		}
 		
 		if(transform.position.z != 0.0f) {
 			transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
 		}
 		
-		if(controller.isGrounded && !isTouchingPlatform) {
-			isTouchingPlatform = false;
+		if(controller.isGrounded) {
+			justTouchedPlatform = false;
 			isJumping = false;
 			moveDirection = new Vector3(Input.GetAxis(horizontalAxis), 0, 0);
 			moveDirection = transform.TransformDirection(moveDirection);
@@ -55,13 +57,16 @@ public class CharacterScript : MonoBehaviour {
 		else {
 			moveDirection.x += Input.GetAxis(horizontalAxis) * airFactor;
 		}
-
-		if(isJumping) {
-			moveDirection.y -= gravitySpeed * Time.deltaTime;
+		
+		//Apply pull down force
+		if(!isJumping && justTouchedPlatform == false) {
+			pullDown = 50f;
+			moveDirection.y -= gravitySpeed * Time.deltaTime * pullDown;
+			
 		}
 		
 		else {
-			moveDirection.y -= gravitySpeed * Time.deltaTime * pullDown;
+			moveDirection.y -= gravitySpeed * Time.deltaTime;
 		}
 		
 		//Move player
@@ -104,7 +109,7 @@ public class CharacterScript : MonoBehaviour {
 		
 		if(hit.gameObject.name == "Platform" && controller.isGrounded) {
 			isJumping = true;
-			isTouchingPlatform = true;
+			justTouchedPlatform = true;
 		}
 	}
 	
