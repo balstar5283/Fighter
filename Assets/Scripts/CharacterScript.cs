@@ -78,9 +78,9 @@ public class CharacterScript : MonoBehaviour {
 		}
 		
 		//Attack!
-		if(Input.GetButtonDown(attackButton)) {
-			animController.performAttack();
+		if(Input.GetButtonDown(attackButton) && attackDone) {
 			attackDone = false;
+			animController.performAttack();
 		}
 		
 		//Face players at one another
@@ -122,19 +122,21 @@ public class CharacterScript : MonoBehaviour {
 			attackDone = true;	
 			break;
 		case "kick":
+			attackDone = true;
 			break;
 		case "gunFire":
 		case "swingBat":
 			attackDone = true;
 			--attacksLeft;
-			if(attacksLeft == 0) {
+			if(attacksLeft <= 0) {
 				equipItem("None");
 			}
 			break;
 		}
 	}
 	
-	void equipItem(string itemName) {
+	public void equipItem(string itemName) {
+		attackDone = true;
 		switch(itemName) {
 		case "Bat":
 			animController.updateWeapon(AnimationController.WeaponType.BAT);

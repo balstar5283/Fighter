@@ -1,41 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Hitbox : MonoBehaviour {
+public class BulletTravel : Hitbox {
+	public int facing;
+	public float speed = 10;
 	
-	public int damage = 10;
-	public bool isActive = false;
-	public Transform target;
-	
-	public int attackFrameCount;
-	public int currentAttackCount;
+	//public Transform target;
 	
 	// Use this for initialization
 	void Start () {
-	
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isActive) {
-			if (attackFrameCount > 0) {
-				currentAttackCount ++;
-				if (attackFrameCount <= currentAttackCount) {
-					disableAttack();
-				}
-			}
+		if (facing == 0) {
+			transform.Translate(new Vector3(speed*Time.deltaTime, 0, 0));
+		}
+		else  {
+			transform.Translate(new Vector3(-speed*Time.deltaTime, 0, 0));
 		}
 	}
 	
-	public void attack(int attackCount) {
-		attackFrameCount = attackCount;
-		currentAttackCount = 0;
-		isActive = true;
-	}
-	
-	public void disableAttack() {
-		isActive = false;
+	public void setTarget(Transform t, int direction) {
+		facing = direction;
+		target = t;
+		attack(-1);
 	}
 	
 	void OnTriggerEnter(Collider c) {
@@ -50,6 +40,7 @@ public class Hitbox : MonoBehaviour {
 				print ("Hit Player 2");
 				isActive = false;
 			}
+			Destroy(gameObject);
 		}
 
 	}
@@ -66,6 +57,7 @@ public class Hitbox : MonoBehaviour {
 				print ("Hit Player 2");
 				isActive = false;
 			}
+			Destroy(gameObject);
 		}
 
 	}

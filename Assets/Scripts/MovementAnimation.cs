@@ -13,7 +13,8 @@ public class MovementAnimation : MonoBehaviour {
 	public bool isAttack = false;
 	public int attackFrame = 0;
 	
-	public Hitbox punchHitbox, kickHitBox;
+	public Hitbox punchHitbox, kickHitBox, gunHitBox;
+	public GameObject bulletPrefab;
 	
 	/*
 	 * Animation data for walk, idle, jump
@@ -92,6 +93,7 @@ public class MovementAnimation : MonoBehaviour {
 			switch (box.name) {
 			case "Punch Hit Box":
 				this.punchHitbox = box;
+				this.gunHitBox = box;
 				break;
 			case "Kick Hit Box":
 				this.kickHitBox = box;
@@ -274,6 +276,12 @@ public class MovementAnimation : MonoBehaviour {
 				break;
 			case "kick":
 				kickHitBox.attack(-1);
+				break;
+			case "gunFire":
+				GameObject bullet = Instantiate (bulletPrefab) as GameObject;
+				CharacterScript player = transform.parent.parent.GetComponent<CharacterScript>();
+				bullet.transform.position = gunHitBox.transform.position + new Vector3(0, .2f, 0);
+				bullet.GetComponent<BulletTravel>().setTarget(player.otherPlayer, player.facing);
 				break;
 			}
 			isAttack = false;

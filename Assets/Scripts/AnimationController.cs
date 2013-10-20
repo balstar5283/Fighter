@@ -73,7 +73,9 @@ public class AnimationController : MonoBehaviour {
 			addJumpOffset();
 			SendMessageUpwards("playAnimationDone", characterSprite.currentAnimationString);
 			characterSprite.playAnimation("idle");
-			characterSprite.kickHitBox.disableAttack();
+			if (characterSprite.kickHitBox != null) {
+				characterSprite.kickHitBox.disableAttack();
+			}
 		}
 		//Player stands still and jump
 		else if (!isJumping && !isGrounded) {
