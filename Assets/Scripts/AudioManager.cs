@@ -28,6 +28,8 @@ public class AudioManager : MonoBehaviour {
         AudioSource source = go.AddComponent<AudioSource>();
         source.clip = clip;
         source.volume = volume;
+		source.pan = 0.0f;
+		source.panLevel = 0.0f;
         source.pitch = pitch;
         source.Play();
         Destroy(go, clip.length);

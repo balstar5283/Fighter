@@ -13,6 +13,15 @@ public class RoundDisplay : MonoBehaviour {
 	public bool showFight;
 	public bool startFight;
 	
+	public AudioClip round1;
+	public AudioClip round2;
+	public AudioClip round3;
+	public AudioClip fight;
+	public AudioClip jimWins;
+	public AudioClip billWins;
+	public AudioClip draw;
+	public AudioClip timeUp;
+	
 	public float displayTime = .5f;
 	public float currentDisplayTime = 0;
 	// Use this for initialization
@@ -86,14 +95,17 @@ public class RoundDisplay : MonoBehaviour {
 		case 1:
 			textureOffset.x = 0;
 			textureOffset.y = .75f;
+			GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(round1, new Vector3(0, 0, 0));
 			break;
 		case 2:
 			textureOffset.x = .5f;
 			textureOffset.y = .75f;
+			GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(round2, new Vector3(0, 0, 0));
 			break;
 		case 3:
 			textureOffset.x = 0;
 			textureOffset.y = .5f;
+			GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(round3, new Vector3(0, 0, 0));
 			break;
 		default:
 			textureOffset.x = 0;
@@ -108,6 +120,7 @@ public class RoundDisplay : MonoBehaviour {
 		showMessage = true;
 		textureOffset.x = 0.5f;
 		textureOffset.y = 0.5f;
+		GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(fight, new Vector3(0, 0, 0));
 		renderer.material.SetTextureOffset("_MainTex", textureOffset);
 	}
 	
@@ -116,6 +129,7 @@ public class RoundDisplay : MonoBehaviour {
 		showMessage = true;
 		textureOffset.x = 0;
 		textureOffset.y = 0;
+		GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(draw, new Vector3(0, 0, 0));
 		renderer.material.SetTextureOffset("_MainTex", textureOffset);
 	}
 	
@@ -130,10 +144,12 @@ public class RoundDisplay : MonoBehaviour {
 		case 1:
 			textureOffset.x = 0;
 			textureOffset.y = .25f;
+			GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(jimWins, new Vector3(0, 0, 0));
 			break;
 		case 2:
 			textureOffset.x = .5f;
 			textureOffset.y = .25f;
+			GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(billWins, new Vector3(0, 0, 0));
 			break;
 		default:
 			textureOffset.x = 0;
@@ -148,6 +164,7 @@ public class RoundDisplay : MonoBehaviour {
 		showMessage = true;
 		textureOffset.x = 0.5f;
 		textureOffset.y = 0;
+		GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(timeUp, new Vector3(0, 0, 0));
 		renderer.material.SetTextureOffset("_MainTex", textureOffset);
 	}
 }

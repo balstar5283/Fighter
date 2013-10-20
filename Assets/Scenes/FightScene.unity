@@ -754,6 +754,14 @@ MonoBehaviour:
   hideMessage: 0
   showFight: 0
   startFight: 0
+  round1: {fileID: 8300000, guid: 4ca669268d7c8e6428b553eb6f57b75d, type: 3}
+  round2: {fileID: 8300000, guid: de4603de3f9409c40bf0ce8a81ea27f0, type: 3}
+  round3: {fileID: 8300000, guid: 6593ddc589280784bb06ab55dd9a3717, type: 3}
+  fight: {fileID: 8300000, guid: 808dc4716b2af4b4e8130701fb6990a3, type: 3}
+  jimWins: {fileID: 8300000, guid: 8e47880676b75d341aa39771297673ef, type: 3}
+  billWins: {fileID: 8300000, guid: 185ff255975f5aa4f96d0774ac94d73b, type: 3}
+  draw: {fileID: 8300000, guid: 2e8f173f273ee0f47b6d1ad301855423, type: 3}
+  timeUp: {fileID: 8300000, guid: 9245b0eab750e034ea37d924bbe2160e, type: 3}
   displayTime: .5
   currentDisplayTime: 0
 --- !u!1 &324218489
@@ -859,7 +867,7 @@ MonoBehaviour:
   batSwing2: {fileID: 8300000, guid: 8aaada14c42f7d245b65b8f688c1507b, type: 3}
   gunFire: {fileID: 8300000, guid: 1f5ca645dfb18c44180251514fbf937e, type: 3}
   gunFire2: {fileID: 8300000, guid: ed2fe2fa631974e46b4cfd5312e176f3, type: 3}
-  punchSound: {fileID: 8300000, guid: f85290e9e0f08874592253a81f209936, type: 3}
+  punchSound: {fileID: 8300000, guid: d2cc66538d4991c4d91c7f772b3f07ef, type: 3}
   kickSound: {fileID: 8300000, guid: eb9844f24109acc4a9df73316f5b16d7, type: 3}
   r: 0
   currentWeapon: 0
@@ -1546,7 +1554,7 @@ MonoBehaviour:
   batSwing2: {fileID: 8300000, guid: 8aaada14c42f7d245b65b8f688c1507b, type: 3}
   gunFire: {fileID: 8300000, guid: 1f5ca645dfb18c44180251514fbf937e, type: 3}
   gunFire2: {fileID: 8300000, guid: ed2fe2fa631974e46b4cfd5312e176f3, type: 3}
-  punchSound: {fileID: 8300000, guid: f85290e9e0f08874592253a81f209936, type: 3}
+  punchSound: {fileID: 8300000, guid: d2cc66538d4991c4d91c7f772b3f07ef, type: 3}
   kickSound: {fileID: 8300000, guid: eb9844f24109acc4a9df73316f5b16d7, type: 3}
   r: 0
   currentWeapon: 0
