@@ -10,6 +10,11 @@ public class HealthBar : MonoBehaviour {
 	public int player2Health = 100;
 	public GameObject player1Display;
 	public GameObject player2Display;
+	public AudioClip hitSound;
+	public AudioClip hitSound2;
+	public AudioClip ouch;
+	public AudioClip ow2;
+	public int r = 0;
 	
 	private GameObject timer;
 	private Timer t;
@@ -26,39 +31,16 @@ public class HealthBar : MonoBehaviour {
 	void Update () {
 		player1Display.renderer.material.SetTextureOffset("_MainTex", new Vector2(.5f * ((maxHealth - player1Health)/(float)maxHealth), 0));
 		player2Display.renderer.material.SetTextureOffset("_MainTex", new Vector2(.5f * ((maxHealth - player2Health)/(float)maxHealth), 0));
-	/*
-		if (Input.GetKeyDown (KeyCode.Z))
-		{
-			 gameObject.SendMessage("ApplyDamageToPlayer1", 50.0F);
-		}
-		if (Input.GetKeyDown (KeyCode.X))
-		{
-			 gameObject.SendMessage("ApplyDamageToPlayer2", 50.0F);
-		}
-	*/
-	}
-	
-	void OnGUI() {
-		
-		/*
-		GUI.Box (new Rect(20, 20, Screen.width / 3 / (maxHealth/maxHealth), 50),player1Health + "/" + maxHealth);
-		
-		if(player1Health > 0)
-		{
-			GUI.Box (new Rect(20, 20, Screen.width / 3 / (maxHealth/ (float)player1Health), 50), "" );
-		}
-			
-		GUI.Box (new Rect(Screen.width-20-Screen.width / 3 / (maxHealth/maxHealth), 20, Screen.width / 3 / (maxHealth/maxHealth), 50),player2Health + "/" + maxHealth);
-		
-		if(player2Health > 0)
-		{
-			float offset = Screen.width / 3 / (maxHealth/maxHealth) - Screen.width / 3 / (maxHealth/ (float)player2Health);
-			GUI.Box (new Rect( (Screen.width-20-Screen.width / 3 / (maxHealth/maxHealth))+offset, 20, (Screen.width / 3 / (maxHealth/ (float)player2Health)), 50), "");
-		}
-		*/
 	}
 	
 	public void ApplyDamageToPlayer1(int damage) {
+		r = Random.Range(0, 10);
+		if(r <= 5) {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(hitSound, new Vector3(0, 0, 0));
+			}
+			else {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(ouch, new Vector3(0, 0, 0));
+			}
 		if (t.isRoundOver()) {
 			return;
 		}
@@ -71,6 +53,13 @@ public class HealthBar : MonoBehaviour {
 	}
 	
 	public void ApplyDamageToPlayer2(int damage) {
+		r = Random.Range(0, 10);
+		if(r <= 5) {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(hitSound2, new Vector3(0, 0, 0));
+			}
+			else {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(ow2, new Vector3(0, 0, 0));
+			}
 		if (t.isRoundOver()) {
 			return;
 		}

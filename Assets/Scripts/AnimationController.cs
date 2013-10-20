@@ -9,6 +9,13 @@ public class AnimationController : MonoBehaviour {
 	// 0 - facing right, 1 - facing left
 	public int facing = 0;
 	public float xDirection;
+	public AudioClip batSwing;
+	public AudioClip batSwing2;
+	public AudioClip gunFire;
+	public AudioClip gunFire2;
+	public AudioClip punchSound;
+	public AudioClip kickSound;
+	public int r = 0;
 	
 	public enum WeaponType {
 		NONE,
@@ -170,16 +177,32 @@ public class AnimationController : MonoBehaviour {
 			if (!isJumping) {
 				characterSprite.hideBackArm();
 				attackSprite.playAnimation("punch");
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(punchSound, new Vector3(0, 0, 0));
 			}
 			else {
 				characterSprite.playAnimation("kick");
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(kickSound, new Vector3(0, 0, 0));
 			}
 			break;
 		case WeaponType.BAT:
 			attackSprite.playAnimation("swingBat");
+			r = Random.Range(0, 10);
+			if(r <= 5) {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(batSwing, new Vector3(0, 0, 0));
+			}
+			else {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(batSwing2, new Vector3(0, 0, 0));
+			}
 			break;
 		case WeaponType.GUN:
 			attackSprite.playAnimation("gunFire");
+			r = Random.Range(0, 10);
+			if(r <= 5) {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(gunFire, new Vector3(0, 0, 0));
+			}
+			else {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(gunFire2, new Vector3(0, 0, 0));
+			}
 			break;
 		}
 	}
