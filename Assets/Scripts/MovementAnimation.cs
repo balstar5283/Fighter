@@ -8,13 +8,14 @@ public class MovementAnimation : MonoBehaviour {
 	public Vector3[] currentAnimation;
 	public string currentAnimationString;
 	
-	//Used to reference the gameobject which needs to be notified of events
-	public GameObject callback;
-	
 	public bool hideAttackArm = false;
 	//Used to send message for attack
 	public bool isAttack = false;
 	public int attackFrame = 0;
+	
+	public Hitbox punchHitbox, kickHitBox, gunHitBox;
+	public GameObject bulletPrefab;
+	
 	/*
 	 * Animation data for walk, idle, jump
 	 */
@@ -87,6 +88,20 @@ public class MovementAnimation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//playAnimation("idle");
+		Hitbox[] boxes = gameObject.GetComponentsInChildren<Hitbox>();
+		foreach (Hitbox box in boxes) {
+			switch (box.name) {
+			case "Punch Hit Box":
+				this.punchHitbox = box;
+				this.gunHitBox = box;
+				break;
+			case "Kick Hit Box":
+				this.kickHitBox = box;
+				break;
+			}
+			box.target = transform.parent.parent.GetComponent<CharacterScript>().otherPlayer;
+		}
+		
 	}
 	
 	// Update is called once per frame
@@ -107,6 +122,7 @@ public class MovementAnimation : MonoBehaviour {
 					reverseAnimation = false;
 					break;
 				case PlayType.PLAYONCE:
+					SendMessageUpwards("playAnimationDone", currentAnimationString);
 					playAnimation("blank");
 					reverseAnimation = false;
 					break;
@@ -135,7 +151,18 @@ public class MovementAnimation : MonoBehaviour {
 					reverseAnimation = true;
 					break;
 				case PlayType.PLAYONCE:
-					playAnimation("blank");
+					SendMessageUpwards("playAnimationDone", currentAnimationString);
+					
+					if (currentAnimationString == "displayGun") {
+						playAnimation("displayGun");
+					}
+					else if (currentAnimationString == "displayBat") {
+						playAnimation("displayBat");
+					}
+					else {
+						playAnimation("blank");
+					}
+					
 					break;
 				case PlayType.CLAMP:
 					currentFrameIndex--;
@@ -213,7 +240,6 @@ public class MovementAnimation : MonoBehaviour {
 			attackFrame = 0;
 			break;
 		case "blank":
-			SendMessageUpwards("playAnimationDone", currentAnimationString);
 			currentAnimation = blank;
 			currentPlaytype = PlayType.CLAMP;
 			break;
@@ -244,7 +270,20 @@ public class MovementAnimation : MonoBehaviour {
 		
 		if (isAttack && (currentFrameIndex == attackFrame)) {
 			//Send message to activate attackFrame
-			SendMessageUpwards("doAttack", currentAnimationString);
+			switch (currentAnimationString) {
+			case "punch":
+				punchHitbox.attack((int)currentAnimation[currentFrameIndex].z);
+				break;
+			case "kick":
+				kickHitBox.attack(-1);
+				break;
+			case "gunFire":
+				GameObject bullet = Instantiate (bulletPrefab) as GameObject;
+				CharacterScript player = transform.parent.parent.GetComponent<CharacterScript>();
+				bullet.transform.position = gunHitBox.transform.position + new Vector3(0, .2f, 0);
+				bullet.GetComponent<BulletTravel>().setTarget(player.otherPlayer, player.facing);
+				break;
+			}
 			isAttack = false;
 		}
 		renderer.material.SetTextureOffset("_MainTex", offset);
@@ -271,9 +310,19 @@ public class MovementAnimation : MonoBehaviour {
 	
 	public void showBackArm() {
 		hideAttackArm = false;
+		Vector2 offset = new Vector2(
+			currentAnimation[currentFrameIndex].x,
+			currentAnimation[currentFrameIndex].y);
+		
+		renderer.material.SetTextureOffset("_MainTex", offset);
 	}
 	
 	public void hideBackArm() {
 		hideAttackArm = true;
+		Vector2 offset = new Vector2(
+			currentAnimation[currentFrameIndex].x,
+			currentAnimation[currentFrameIndex].y -.125f);
+		
+		renderer.material.SetTextureOffset("_MainTex", offset);
 	}
 }

@@ -17,6 +17,7 @@ public class ItemScript : MonoBehaviour
 	}
 	
 	void OnCollisionEnter(Collision c) {
+
 		if(c.gameObject.name == "Player 1" || c.gameObject.name == "Player 2") {
 			c.gameObject.GetComponent<CharacterScript>().equipItem(gameObject.tag);
 			c.gameObject.GetComponent<CharacterScript>().attacksLeft = 3;

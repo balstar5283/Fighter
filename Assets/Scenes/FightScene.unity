@@ -170,10 +170,13 @@ MonoBehaviour:
   currentFrameIndex: 0
   currentAnimation: []
   currentAnimationString: 
-  callback: {fileID: 0}
   hideAttackArm: 0
   isAttack: 0
   attackFrame: 0
+  punchHitbox: {fileID: 0}
+  kickHitBox: {fileID: 0}
+  gunHitBox: {fileID: 0}
+  bulletPrefab: {fileID: 100002, guid: c5e6079e23e1a5a49967cc9ddc4a7ebf, type: 2}
   walk:
   - {x: .5, y: .375, z: 7}
   - {x: .625, y: .375, z: 7}
@@ -227,7 +230,6 @@ Transform:
   m_LocalPosition: {x: -.0469532013, y: 0, z: -.459999979}
   m_LocalScale: {x: .291031003, y: .291031003, z: .291031003}
   m_Children:
-  - {fileID: 752697965}
   - {fileID: 558144066}
   m_Father: {fileID: 374766829}
 --- !u!23 &94775706
@@ -348,6 +350,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   isActive: 0
+  target: {fileID: 0}
+  attackFrameCount: 0
+  currentAttackCount: 0
 --- !u!1 &172292529
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,9 +441,10 @@ MonoBehaviour:
   jumpSpeed: 15
   gravitySpeed: 30
   maxSpeed: 10
-  airFactor: .25
+  airFactor: .349999994
   pullDown: 50
   attacksLeft: 3
+  downButton: Down1
   horizontalAxis: Horizontal1
   jumpAxis: Jump1
   facing: 0
@@ -485,7 +491,8 @@ Transform:
   m_LocalRotation: {x: -3.09086232e-08, y: .707106829, z: -.707106829, w: -3.09086232e-08}
   m_LocalPosition: {x: -.0469532013, y: 0, z: -.499146014}
   m_LocalScale: {x: .291031003, y: .291031003, z: .291031003}
-  m_Children: []
+  m_Children:
+  - {fileID: 398609036}
   m_Father: {fileID: 662644660}
 --- !u!23 &261816993
 Renderer:
@@ -540,10 +547,13 @@ MonoBehaviour:
   currentFrameIndex: 0
   currentAnimation: []
   currentAnimationString: 
-  callback: {fileID: 0}
   hideAttackArm: 0
   isAttack: 0
   attackFrame: 0
+  punchHitbox: {fileID: 0}
+  kickHitBox: {fileID: 0}
+  gunHitBox: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   walk:
   - {x: .5, y: .375, z: 7}
   - {x: .625, y: .375, z: 7}
@@ -816,11 +826,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 398609035}
-  m_LocalRotation: {x: 0, y: -.707106829, z: .707106829, w: 0}
-  m_LocalPosition: {x: 2.49562478, y: -.754460335, z: 4.35371828}
-  m_LocalScale: {x: 2.20099854, y: 1.44550765, z: 3.40869308}
+  m_LocalRotation: {x: 3.09086232e-08, y: -.707106829, z: .707106829, w: -3.09086232e-08}
+  m_LocalPosition: {x: 2.49562478, y: -.888967454, z: 4.35371828}
+  m_LocalScale: {x: 2.20099854, y: 1.44550753, z: 3.40869308}
   m_Children: []
-  m_Father: {fileID: 1225740264}
+  m_Father: {fileID: 261816992}
 --- !u!23 &398609037
 Renderer:
   m_ObjectHideFlags: 0
@@ -871,6 +881,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   isActive: 0
+  target: {fileID: 0}
+  attackFrameCount: 0
+  currentAttackCount: 0
 --- !u!1 &398648684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1162,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   isActive: 0
+  target: {fileID: 0}
+  attackFrameCount: 0
+  currentAttackCount: 0
 --- !u!23 &558144068
 Renderer:
   m_ObjectHideFlags: 0
@@ -1345,6 +1361,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   isActive: 0
+  target: {fileID: 0}
+  attackFrameCount: 0
+  currentAttackCount: 0
 --- !u!23 &752697962
 Renderer:
   m_ObjectHideFlags: 0
@@ -1388,11 +1407,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 752697960}
-  m_LocalRotation: {x: 0, y: -.707106829, z: .707106829, w: 0}
-  m_LocalPosition: {x: 2.49562502, y: -.754460275, z: 4.3537178}
+  m_LocalRotation: {x: 3.09086232e-08, y: -.707106829, z: .707106829, w: -3.09086232e-08}
+  m_LocalPosition: {x: 2.49562478, y: -.888967335, z: 4.35371828}
   m_LocalScale: {x: 2.20099831, y: 1.44550896, z: 3.40869451}
   m_Children: []
-  m_Father: {fileID: 94775705}
+  m_Father: {fileID: 2079292367}
 --- !u!1 &886210887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,7 +1640,6 @@ Transform:
   m_LocalPosition: {x: -.0469532013, y: 0, z: -.459999979}
   m_LocalScale: {x: .291031003, y: .291031003, z: .291031003}
   m_Children:
-  - {fileID: 398609036}
   - {fileID: 159663852}
   m_Father: {fileID: 662644660}
 --- !u!23 &1225740265
@@ -1677,10 +1695,13 @@ MonoBehaviour:
   currentFrameIndex: 0
   currentAnimation: []
   currentAnimationString: 
-  callback: {fileID: 0}
   hideAttackArm: 0
   isAttack: 0
   attackFrame: 0
+  punchHitbox: {fileID: 0}
+  kickHitBox: {fileID: 0}
+  gunHitBox: {fileID: 0}
+  bulletPrefab: {fileID: 100002, guid: c5e6079e23e1a5a49967cc9ddc4a7ebf, type: 2}
   walk:
   - {x: .5, y: .375, z: 7}
   - {x: .625, y: .375, z: 7}
@@ -2136,6 +2157,7 @@ GameObject:
   - 33: {fileID: 1902127474}
   - 65: {fileID: 1902127473}
   - 23: {fileID: 1902127472}
+  - 114: {fileID: 1902127476}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -2191,6 +2213,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1902127470}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1902127476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1902127470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175eb871e2a4c44fb50d1429b9419f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1930903944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2235,7 @@ GameObject:
   - 33: {fileID: 1930903948}
   - 65: {fileID: 1930903947}
   - 23: {fileID: 1930903946}
+  - 114: {fileID: 1930903950}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -2257,6 +2291,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1930903944}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1930903950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1930903944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175eb871e2a4c44fb50d1429b9419f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1935930917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,11 +2404,12 @@ MonoBehaviour:
   beginMovement: 0
   isNotGrounded: 0
   jumpSpeed: 15
-  gravitySpeed: 20
+  gravitySpeed: 30
   maxSpeed: 10
-  airFactor: .5
+  airFactor: .349999994
   pullDown: 50
   attacksLeft: 3
+  downButton: Down1
   horizontalAxis: Horizontal2
   jumpAxis: Jump2
   facing: 0
@@ -2467,10 +2513,13 @@ MonoBehaviour:
   currentFrameIndex: 0
   currentAnimation: []
   currentAnimationString: 
-  callback: {fileID: 0}
   hideAttackArm: 0
   isAttack: 0
   attackFrame: 0
+  punchHitbox: {fileID: 0}
+  kickHitBox: {fileID: 0}
+  gunHitBox: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   walk:
   - {x: .5, y: .375, z: 7}
   - {x: .625, y: .375, z: 7}
@@ -2523,7 +2572,8 @@ Transform:
   m_LocalRotation: {x: -3.09086232e-08, y: .707106829, z: -.707106829, w: -3.09086232e-08}
   m_LocalPosition: {x: -.0469532013, y: 0, z: -.499146014}
   m_LocalScale: {x: .291031003, y: .291031003, z: .291031003}
-  m_Children: []
+  m_Children:
+  - {fileID: 752697965}
   m_Father: {fileID: 374766829}
 --- !u!23 &2079292368
 Renderer:

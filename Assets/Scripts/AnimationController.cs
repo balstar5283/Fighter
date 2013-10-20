@@ -56,7 +56,8 @@ public class AnimationController : MonoBehaviour {
 			updateWeapon(WeaponType.BAT);
 		}
 		*/
-		
+			
+			
 	}
 	
 	public void updateWeapon(WeaponType type) {
@@ -70,7 +71,11 @@ public class AnimationController : MonoBehaviour {
 		if (isJumping && isGrounded) {
 			isJumping = false;
 			addJumpOffset();
+			SendMessageUpwards("playAnimationDone", characterSprite.currentAnimationString);
 			characterSprite.playAnimation("idle");
+			if (characterSprite.kickHitBox != null) {
+				characterSprite.kickHitBox.disableAttack();
+			}
 		}
 		//Player stands still and jump
 		else if (!isJumping && !isGrounded) {
@@ -162,12 +167,12 @@ public class AnimationController : MonoBehaviour {
 	public void performAttack() {
 		switch (currentWeapon) {
 		case WeaponType.NONE:
-			characterSprite.hideBackArm();
 			if (!isJumping) {
+				characterSprite.hideBackArm();
 				attackSprite.playAnimation("punch");
 			}
 			else {
-				attackSprite.playAnimation("kick");
+				characterSprite.playAnimation("kick");
 			}
 			break;
 		case WeaponType.BAT:

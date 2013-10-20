@@ -12,6 +12,7 @@ public class CharacterScript : MonoBehaviour {
 	public float airFactor = .5f;
 	public float pullDown = 50f;
 	public int attacksLeft = 0;
+	public string downButton = "Down1";
 	public string horizontalAxis = "Horizontal1";
 	public string jumpAxis = "Jump1";
 	public int facing;
@@ -39,6 +40,10 @@ public class CharacterScript : MonoBehaviour {
 		//Fix z position
 		if(transform.position.z != 0.0f) {
 			transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
+		}
+		
+		if(Input.GetButtonDown(downButton) && isNotGrounded && isJumping) {
+			gameObject.transform.Translate(new Vector3(0f, -.5f, 0f));
 		}
 
 		if(controller.isGrounded) {
@@ -78,9 +83,10 @@ public class CharacterScript : MonoBehaviour {
 		}
 		
 		//Attack!
-		if(Input.GetButtonDown(attackButton) && attackDone) {
-			animController.performAttack();
+		if(Input.GetButtonDown(attackButton) && attackDone && beginMovement) {
+
 			attackDone = false;
+			animController.performAttack();
 		}
 		
 		//Face players at one another
@@ -122,12 +128,13 @@ public class CharacterScript : MonoBehaviour {
 			attackDone = true;	
 			break;
 		case "kick":
+			attackDone = true;
 			break;
 		case "gunFire":
 		case "swingBat":
 			attackDone = true;
 			--attacksLeft;
-			if(attacksLeft == 0) {
+			if(attacksLeft <= 0) {
 				equipItem("None");
 			}
 			break;
@@ -135,6 +142,9 @@ public class CharacterScript : MonoBehaviour {
 	}
 	
 	public void equipItem(string itemName) {
+
+		attackDone = true;
+
 		switch(itemName) {
 		case "Bat":
 			animController.updateWeapon(AnimationController.WeaponType.BAT);
