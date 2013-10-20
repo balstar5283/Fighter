@@ -443,9 +443,10 @@ MonoBehaviour:
   jumpSpeed: 15
   gravitySpeed: 30
   maxSpeed: 10
-  airFactor: .25
+  airFactor: .349999994
   pullDown: 50
   attacksLeft: 3
+  downButton: Down1
   horizontalAxis: Horizontal1
   jumpAxis: Jump1
   facing: 0
@@ -2327,6 +2328,7 @@ GameObject:
   - 33: {fileID: 1902127474}
   - 65: {fileID: 1902127473}
   - 23: {fileID: 1902127472}
+  - 114: {fileID: 1902127476}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -2382,6 +2384,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1902127470}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1902127476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1902127470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175eb871e2a4c44fb50d1429b9419f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1930903944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,6 +2406,7 @@ GameObject:
   - 33: {fileID: 1930903948}
   - 65: {fileID: 1930903947}
   - 23: {fileID: 1930903946}
+  - 114: {fileID: 1930903950}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -2448,6 +2462,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1930903944}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1930903950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1930903944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175eb871e2a4c44fb50d1429b9419f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1935930917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,11 +2575,12 @@ MonoBehaviour:
   beginMovement: 0
   isNotGrounded: 0
   jumpSpeed: 15
-  gravitySpeed: 20
+  gravitySpeed: 30
   maxSpeed: 10
-  airFactor: .5
+  airFactor: .349999994
   pullDown: 50
   attacksLeft: 3
+  downButton: Down1
   horizontalAxis: Horizontal2
   jumpAxis: Jump2
   facing: 0

@@ -20,6 +20,10 @@ public class BulletTravel : Hitbox {
 		else  {
 			transform.Translate(new Vector3(-speed*Time.deltaTime, 0, 0));
 		}
+		
+		if(gameObject.transform.position.x < -20 || gameObject.transform.position.x > 20) {
+			Destroy (gameObject);
+		}
 	}
 	
 	public void setTarget(Transform t, int direction) {
@@ -42,7 +46,6 @@ public class BulletTravel : Hitbox {
 			}
 			Destroy(gameObject);
 		}
-
 	}
 	
 	void OnTriggerStay(Collider c) {
