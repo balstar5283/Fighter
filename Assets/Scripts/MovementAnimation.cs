@@ -13,7 +13,7 @@ public class MovementAnimation : MonoBehaviour {
 	public bool isAttack = false;
 	public int attackFrame = 0;
 	
-	public Hitbox punchHitbox, kickHitBox, gunHitBox;
+	public Hitbox punchHitbox, kickHitBox, gunHitBox, batHitBox;
 	public GameObject bulletPrefab;
 	
 	/*
@@ -97,6 +97,9 @@ public class MovementAnimation : MonoBehaviour {
 				break;
 			case "Kick Hit Box":
 				this.kickHitBox = box;
+				break;
+			case "Bat Hit Box":
+				this.batHitBox = box;
 				break;
 			}
 			box.target = transform.parent.parent.GetComponent<CharacterScript>().otherPlayer;
@@ -237,7 +240,7 @@ public class MovementAnimation : MonoBehaviour {
 			currentAnimation = swingBat;
 			currentPlaytype = PlayType.PLAYONCE;
 			isAttack = true;
-			attackFrame = 0;
+			attackFrame = 2;
 			break;
 		case "blank":
 			currentAnimation = blank;
@@ -282,6 +285,9 @@ public class MovementAnimation : MonoBehaviour {
 				CharacterScript player = transform.parent.parent.GetComponent<CharacterScript>();
 				bullet.transform.position = gunHitBox.transform.position + new Vector3(0, .2f, 0);
 				bullet.GetComponent<BulletTravel>().setTarget(player.otherPlayer, player.facing);
+				break;
+			case "swingBat":
+				batHitBox.attack((int)currentAnimation[currentFrameIndex].z);
 				break;
 			}
 			isAttack = false;
