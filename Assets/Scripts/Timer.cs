@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour {
 	public bool roundOver = false;
 	public bool gameOver = false;
 	
+	public TextMesh countDownDisplay;
 	private GameObject roundAnimation;
 	private RoundDisplay rd;
 	
@@ -48,6 +49,7 @@ public class Timer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		countDownDisplay.text = time.ToString();
 		if(gameOver)
 		{
 			GameObject player1 = GameObject.Find("Player 1");
@@ -72,11 +74,12 @@ public class Timer : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		GUI.Box (new Rect((Screen.width/2) - 75 , 20, 150, 50), time.ToString());
+		//GUI.Box (new Rect((Screen.width/2) - 75 , 20, 150, 50), time.ToString());
 	}
 	
 	public void checkWhoWon()
 	{
+		Destroy(GameObject.Find ("Spawner"));
 		GameObject player1 = GameObject.Find("Player 1");
 		GameObject player2 = GameObject.Find("Player 2");
 		if(hb.player1Health == hb.player2Health)

@@ -19,6 +19,8 @@ public class CharacterScript : MonoBehaviour {
 	public string attackButton = "Fire1";
 	public bool isJumping;
 	public bool attackDone = true;
+	public bool touchingPlatform;
+	public bool isTakingDamage = false;
 	public Transform otherPlayer;
 	private string itemName;
 	private Vector3 moveDirection = Vector3.zero;
@@ -33,8 +35,6 @@ public class CharacterScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		pullDown = 1.0f;
 		isNotGrounded = true;
 		
 		//Fix z position
@@ -42,30 +42,34 @@ public class CharacterScript : MonoBehaviour {
 			transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
 		}
 		
-		if(Input.GetButtonDown(downButton) && isNotGrounded && isJumping) {
+		if(Input.GetButtonDown(downButton) && isNotGrounded && isJumping && touchingPlatform) {
 			gameObject.transform.Translate(new Vector3(0f, -.5f, 0f));
 		}
-
-		if(controller.isGrounded) {
-			isNotGrounded = false;
-			isJumping = false;
-			moveDirection = new Vector3(Input.GetAxis(horizontalAxis), 0, 0);
-			moveDirection = transform.TransformDirection(moveDirection);
-			moveDirection *= movementSpeed;
-						
-			if(Input.GetButtonDown(jumpAxis)) {
-				isJumping = true;
-				moveDirection.y = jumpSpeed;
+		if (!isTakingDamage) {
+			if(controller.isGrounded) {
+				isNotGrounded = false;
+				isJumping = false;
+				moveDirection = new Vector3(Input.GetAxis(horizontalAxis), 0, 0);
+				moveDirection = transform.TransformDirection(moveDirection);
+				moveDirection *= movementSpeed;
+							
+				if(Input.GetButtonDown(jumpAxis)) {
+					touchingPlatform = false;
+					isJumping = true;
+					moveDirection.y = jumpSpeed;
+				}
+			}
+				
+			else {
+				moveDirection.x += Input.GetAxis(horizontalAxis) * airFactor;
 			}
 		}
-			
 		else {
-			moveDirection.x += Input.GetAxis(horizontalAxis) * airFactor;
+			isTakingDamage = false;
 		}
 		
 		//Apply pull down force
 		if(!isJumping && !isNotGrounded) {
-			pullDown = 50f;
 			moveDirection.y -= gravitySpeed * Time.deltaTime * pullDown;		
 		}
 		
@@ -117,9 +121,13 @@ public class CharacterScript : MonoBehaviour {
 			Destroy(hit.gameObject);
 		}
 		
-		if(hit.gameObject.name == "Platform" && controller.isGrounded) {
+		if(hit.gameObject.name == "Platform" && controller.isGrounded ) {
+			touchingPlatform = true;
 			isJumping = true;
 			isNotGrounded = true;
+		}
+		else {
+			touchingPlatform = false;
 		}
 	}
 	
@@ -165,5 +173,26 @@ public class CharacterScript : MonoBehaviour {
 	
 	public void startMovement() {
 		beginMovement = true;
+	}
+	
+	public void knockBack() {
+		isTakingDamage = true;
+		//Facing Right
+		if (facing == 0) {
+			if(controller.isGrounded) {
+				moveDirection = new Vector3(-5f, 10, 0);
+			}
+			else {
+				moveDirection = new Vector3(-5f, 10, 0);
+			}
+		}
+		else {
+			if(controller.isGrounded) {
+				moveDirection = new Vector3(5f, 10, 0);
+			}
+			else {
+				moveDirection = new Vector3(5f, 10, 0);
+			}
+		}
 	}
 }

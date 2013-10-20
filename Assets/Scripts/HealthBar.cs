@@ -50,6 +50,7 @@ public class HealthBar : MonoBehaviour {
 			player1Health = 0;
 			t.endGame();
 		}
+		GameObject.Find("Player 1").GetComponent<CharacterScript>().knockBack();
 	}
 	
 	public void ApplyDamageToPlayer2(int damage) {
@@ -70,6 +71,7 @@ public class HealthBar : MonoBehaviour {
 			player2Health = 0;
 			t.endGame();
 		}
+		GameObject.Find ("Player 2").GetComponent<CharacterScript>().knockBack();
 	}
 	
 	

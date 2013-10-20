@@ -186,7 +186,7 @@ TextMesh:
   m_FontSize: 120
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 0249d798277c2c4458691dc17941bcf1, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -202,7 +202,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0249d798277c2c4458691dc17941bcf1, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -304,7 +304,7 @@ TextMesh:
   m_FontSize: 100
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 0249d798277c2c4458691dc17941bcf1, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -320,7 +320,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0249d798277c2c4458691dc17941bcf1, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -452,7 +452,7 @@ TextMesh:
   m_FontSize: 120
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 0249d798277c2c4458691dc17941bcf1, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -468,7 +468,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0249d798277c2c4458691dc17941bcf1, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -513,17 +513,17 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1178035102}
-  m_Text: Extreme Edition
+  m_Text: Xtreme Edition
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 120
-  m_FontStyle: 0
+  m_FontSize: 200
+  m_FontStyle: 3
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 9c3dd5e9a86c3144fa63ccb31262026a, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -539,7 +539,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9c3dd5e9a86c3144fa63ccb31262026a, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -552,7 +552,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1178035102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 84.5042725, y: -11.1089935, z: 0}
+  m_LocalPosition: {x: 84.5042725, y: -9.94429207, z: 0}
   m_LocalScale: {x: .430044413, y: .433307946, z: 1}
   m_Children: []
   m_Father: {fileID: 869232869}
@@ -752,7 +752,7 @@ TextMesh:
   m_FontSize: 120
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 0249d798277c2c4458691dc17941bcf1, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -768,7 +768,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0249d798277c2c4458691dc17941bcf1, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -916,7 +916,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1985877531}
   m_LocalRotation: {x: -3.09086232e-08, y: .707106829, z: -.707106829, w: -3.09086232e-08}
-  m_LocalPosition: {x: .939313829, y: .289538622, z: -13.5321226}
+  m_LocalPosition: {x: 1.39023292, y: .289538622, z: -13.5321226}
   m_LocalScale: {x: .367749244, y: .26743418, z: .210446075}
   m_Children: []
   m_Father: {fileID: 0}
