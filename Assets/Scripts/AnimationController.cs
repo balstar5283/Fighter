@@ -56,9 +56,6 @@ public class AnimationController : MonoBehaviour {
 			updateWeapon(WeaponType.BAT);
 		}
 		*/
-		if (Input.GetKeyDown (KeyCode.F)) {
-			performAttack();
-		}
 			
 			
 	}
@@ -76,7 +73,7 @@ public class AnimationController : MonoBehaviour {
 			addJumpOffset();
 			SendMessageUpwards("playAnimationDone", characterSprite.currentAnimationString);
 			characterSprite.playAnimation("idle");
-			
+			characterSprite.kickHitBox.disableAttack();
 		}
 		//Player stands still and jump
 		else if (!isJumping && !isGrounded) {

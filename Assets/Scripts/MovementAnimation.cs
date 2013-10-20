@@ -12,6 +12,9 @@ public class MovementAnimation : MonoBehaviour {
 	//Used to send message for attack
 	public bool isAttack = false;
 	public int attackFrame = 0;
+	
+	public Hitbox punchHitbox, kickHitBox;
+	
 	/*
 	 * Animation data for walk, idle, jump
 	 */
@@ -84,6 +87,19 @@ public class MovementAnimation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//playAnimation("idle");
+		Hitbox[] boxes = gameObject.GetComponentsInChildren<Hitbox>();
+		foreach (Hitbox box in boxes) {
+			switch (box.name) {
+			case "Punch Hit Box":
+				this.punchHitbox = box;
+				break;
+			case "Kick Hit Box":
+				this.kickHitBox = box;
+				break;
+			}
+			box.target = transform.parent.parent.GetComponent<CharacterScript>().otherPlayer;
+		}
+		
 	}
 	
 	// Update is called once per frame
@@ -134,7 +150,17 @@ public class MovementAnimation : MonoBehaviour {
 					break;
 				case PlayType.PLAYONCE:
 					SendMessageUpwards("playAnimationDone", currentAnimationString);
-					playAnimation("blank");
+					
+					if (currentAnimationString == "displayGun") {
+						playAnimation("displayGun");
+					}
+					else if (currentAnimationString == "displayBat") {
+						playAnimation("displayBat");
+					}
+					else {
+						playAnimation("blank");
+					}
+					
 					break;
 				case PlayType.CLAMP:
 					currentFrameIndex--;
@@ -242,7 +268,14 @@ public class MovementAnimation : MonoBehaviour {
 		
 		if (isAttack && (currentFrameIndex == attackFrame)) {
 			//Send message to activate attackFrame
-			//TODO: Activate attack hitbox
+			switch (currentAnimationString) {
+			case "punch":
+				punchHitbox.attack((int)currentAnimation[currentFrameIndex].z);
+				break;
+			case "kick":
+				kickHitBox.attack(-1);
+				break;
+			}
 			isAttack = false;
 		}
 		renderer.material.SetTextureOffset("_MainTex", offset);
@@ -269,9 +302,19 @@ public class MovementAnimation : MonoBehaviour {
 	
 	public void showBackArm() {
 		hideAttackArm = false;
+		Vector2 offset = new Vector2(
+			currentAnimation[currentFrameIndex].x,
+			currentAnimation[currentFrameIndex].y);
+		
+		renderer.material.SetTextureOffset("_MainTex", offset);
 	}
 	
 	public void hideBackArm() {
 		hideAttackArm = true;
+		Vector2 offset = new Vector2(
+			currentAnimation[currentFrameIndex].x,
+			currentAnimation[currentFrameIndex].y -.125f);
+		
+		renderer.material.SetTextureOffset("_MainTex", offset);
 	}
 }
