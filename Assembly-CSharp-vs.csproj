@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Test\RoundAnimation.cs" />
      <Compile Include="Assets\Scripts\Test\WalkTest.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
+     <Compile Include="Assets\Scripts\TitleScroll.cs" />
      <Compile Include="Assets\Scripts\Vibrate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -48,41 +48,23 @@ public class Timer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		/*
 		if(gameOver)
 		{
-			CancelInvoke("decrease");
-			if (player1Beer == 2 && player2Beer == 2)
-			{
-				ra.setAnimation(0,0);
-			}
-			if (player1Beer == 2)
-			{
-				ra.setAnimation(0,1);
-			}
-			else if (player2Beer == 2)
-			{
-				ra.setAnimation(1,1);
-			}
-			
-			
-		}*/
-		if(gameOver)
-		{
+			GameObject player1 = GameObject.Find("Player 1");
+			GameObject player2 = GameObject.Find("Player 2");
+			player1.GetComponent<CharacterScript>().beginMovement = false;
+			player2.GetComponent<CharacterScript>().beginMovement = false;
 			if(hb.player1Health == hb.player2Health)
 			{
 				StartCoroutine( "showWinner", 0);
-				
 			}
 			else if (hb.player1Health > hb.player2Health)
 			{
 				StartCoroutine( "showWinner", 1);
-				
 			}
 			else if (hb.player2Health > hb.player1Health)
 			{
 				StartCoroutine( "showWinner", 2);
-
 			}
 			gameOver = false;
 			roundOver = true;
@@ -95,20 +77,27 @@ public class Timer : MonoBehaviour {
 	
 	public void checkWhoWon()
 	{
-			if(hb.player1Health == hb.player2Health)
-			{
-				player1Beer++;
-				player2Beer++;
-			}
-			else if (hb.player1Health > hb.player2Health)
-			{
-				player1Beer++;
-	
-			}
-			else if (hb.player2Health > hb.player1Health)
-			{
-				player2Beer++;
-			}
+		GameObject player1 = GameObject.Find("Player 1");
+		GameObject player2 = GameObject.Find("Player 2");
+		if(hb.player1Health == hb.player2Health)
+		{
+			player1Beer++;
+			player2Beer++;
+			player1.GetComponentInChildren<AnimationController>().playDefeat();
+			player2.GetComponentInChildren<AnimationController>().playDefeat();
+		}
+		else if (hb.player1Health > hb.player2Health)
+		{
+			player1Beer++;
+			player1.GetComponentInChildren<AnimationController>().playWinner();
+			player2.GetComponentInChildren<AnimationController>().playDefeat();
+		}
+		else if (hb.player2Health > hb.player1Health)
+		{
+			player2Beer++;
+			player1.GetComponentInChildren<AnimationController>().playDefeat();
+			player2.GetComponentInChildren<AnimationController>().playWinner();
+		}
 
 	}
 	

@@ -32,32 +32,7 @@ public class AnimationController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		/*
-		//Testing script
-		updateState(Input.GetAxis("Horizontal1"), tempGrounded, tempDirection);
-		if(Input.GetKeyDown(KeyCode.J)){
-			if (tempDirection == 0) {
-				tempDirection = 1;
-			}
-			else 
-				tempDirection = 0;
-		}
-		if(Input.GetKeyDown(KeyCode.K)) {
-			tempGrounded = !tempGrounded;
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha1)) {
-			updateWeapon(WeaponType.NONE);
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha2)) {
-			updateWeapon(WeaponType.GUN);
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha3)) {
-			updateWeapon(WeaponType.BAT);
-		}
-		*/
-			
-			
+	void Update () {			
 	}
 	
 	public void updateWeapon(WeaponType type) {
@@ -228,5 +203,15 @@ public class AnimationController : MonoBehaviour {
 		else if (animation == "swingBat") {
 			attackSprite.playAnimation("displayBat");
 		}
+	}
+	
+	public void playDefeat() {
+		attackSprite.playAnimation("blank");
+		characterSprite.playAnimation("defeat");
+	}
+	
+	public void playWinner() {
+		attackSprite.playAnimation("blank");
+		characterSprite.playAnimation("victory");
 	}
 }
