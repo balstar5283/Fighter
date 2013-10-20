@@ -230,11 +230,13 @@ public class AnimationController : MonoBehaviour {
 	
 	public void playDefeat() {
 		attackSprite.playAnimation("blank");
+		characterSprite.showBackArm();
 		characterSprite.playAnimation("defeat");
 	}
 	
 	public void playWinner() {
 		attackSprite.playAnimation("blank");
+		characterSprite.showBackArm();
 		characterSprite.playAnimation("victory");
 	}
 }

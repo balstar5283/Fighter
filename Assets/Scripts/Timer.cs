@@ -131,7 +131,7 @@ public class Timer : MonoBehaviour {
 	
 	IEnumerator showWinner(int player) {
 		StopCoroutine ("decrease");
-		yield return new WaitForSeconds( 1.5f );
+		yield return new WaitForSeconds( 1f );
 		rd.renderer.enabled = true;
 		checkWhoWon();
 		displayPlayerPoints();
@@ -146,6 +146,13 @@ public class Timer : MonoBehaviour {
 		currentRound++;
 		if (currentRound > maxRound) {
 			currentRound = maxRound;
+		}
+		yield return new WaitForSeconds (2);
+		if (player1Beer >= 2 || player2Beer >= 2) {
+			//TODO: Show menu
+		}
+		else {
+			Application.LoadLevel("FightScene");
 		}
 	}
 	

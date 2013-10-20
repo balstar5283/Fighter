@@ -79,6 +79,7 @@ public class RoundDisplay : MonoBehaviour {
 	 * @param round The round number to display. Should only range from 1-3 otherwise it will show round 1.
 	 */
 	public void displayRound(int round) {
+		displayTime = .5f;
 		currentDisplayTime = 0;
 		showFight = true;
 		showMessage = true;
@@ -104,6 +105,7 @@ public class RoundDisplay : MonoBehaviour {
 	}
 	
 	public void displayFight() {
+		displayTime = .7f;
 		currentDisplayTime = 0;
 		showMessage = true;
 		textureOffset.x = 0.5f;
@@ -112,6 +114,7 @@ public class RoundDisplay : MonoBehaviour {
 	}
 	
 	public void displayDraw() {
+		displayTime = 1.5f;
 		currentDisplayTime = 0;
 		showMessage = true;
 		textureOffset.x = 0;
@@ -124,6 +127,7 @@ public class RoundDisplay : MonoBehaviour {
 	 * @param winner Show which player won. Takes values 1 or 2. Any other value will return draw.
 	 */
 	public void displayWinner(int winner) {
+		displayTime = 1.5f;
 		currentDisplayTime = 0;
 		showMessage = true;
 		switch (winner) {

@@ -99,12 +99,13 @@ public class CharacterScript : MonoBehaviour {
 		
 		//Move player
 		if(beginMovement) {
-		animController.updateState(moveDirection.x, controller.isGrounded, facing);
-		controller.Move(moveDirection * Time.deltaTime);
+			animController.updateState(moveDirection.x, controller.isGrounded, facing);
+			controller.Move(moveDirection * Time.deltaTime);
 		}
 		
 		else{
-			controller.Move(new Vector3(0, -30, 0));
+			animController.updateState(0, controller.isGrounded, facing);
+			controller.Move(new Vector3(0, -gravitySpeed * Time.deltaTime, 0));
 		}
 		
 	}
