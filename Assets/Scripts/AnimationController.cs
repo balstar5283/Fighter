@@ -15,6 +15,7 @@ public class AnimationController : MonoBehaviour {
 	public AudioClip gunFire2;
 	public AudioClip punchSound;
 	public AudioClip kickSound;
+	public AudioClip defeat;
 	public int r = 0;
 	
 	public enum WeaponType {
@@ -232,6 +233,7 @@ public class AnimationController : MonoBehaviour {
 		attackSprite.playAnimation("blank");
 		characterSprite.showBackArm();
 		characterSprite.playAnimation("defeat");
+		GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(defeat, Vector3.zero);
 	}
 	
 	public void playWinner() {

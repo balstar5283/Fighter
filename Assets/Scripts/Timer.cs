@@ -135,6 +135,7 @@ public class Timer : MonoBehaviour {
 		rd.renderer.enabled = true;
 		checkWhoWon();
 		displayPlayerPoints();
+		yield return new WaitForSeconds( 1f );
 		if (player == 0) {
 			rd.displayDraw();
 		}
@@ -180,14 +181,14 @@ public class Timer : MonoBehaviour {
 		if(player1Beer >= 2)
 		{
 			beerPoint[1].renderer.enabled = true;
-			gameOver = true;
+			//gameOver = true;
 		}
 		if(player2Beer >= 1)
 			beerPoint[2].renderer.enabled = true;
 		if(player2Beer >= 2)
 		{
 			beerPoint[3].renderer.enabled = true;
-			gameOver = true;
+			//gameOver = true;
 		}
 	}
 

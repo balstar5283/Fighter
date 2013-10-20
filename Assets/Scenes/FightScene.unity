@@ -869,6 +869,7 @@ MonoBehaviour:
   gunFire2: {fileID: 8300000, guid: ed2fe2fa631974e46b4cfd5312e176f3, type: 3}
   punchSound: {fileID: 8300000, guid: d2cc66538d4991c4d91c7f772b3f07ef, type: 3}
   kickSound: {fileID: 8300000, guid: eb9844f24109acc4a9df73316f5b16d7, type: 3}
+  defeat: {fileID: 8300000, guid: 93d4162d436a7864295250ecb37439cb, type: 3}
   r: 0
   currentWeapon: 0
   characterSprite: {fileID: 2079292366}
@@ -1557,6 +1558,7 @@ MonoBehaviour:
   gunFire2: {fileID: 8300000, guid: ed2fe2fa631974e46b4cfd5312e176f3, type: 3}
   punchSound: {fileID: 8300000, guid: d2cc66538d4991c4d91c7f772b3f07ef, type: 3}
   kickSound: {fileID: 8300000, guid: eb9844f24109acc4a9df73316f5b16d7, type: 3}
+  defeat: {fileID: 8300000, guid: 93d4162d436a7864295250ecb37439cb, type: 3}
   r: 0
   currentWeapon: 0
   characterSprite: {fileID: 261816996}
