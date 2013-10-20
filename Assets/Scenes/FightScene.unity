@@ -786,7 +786,7 @@ MonoBehaviour:
   isJumping: 0
   isWalking: 0
   setWeapon: 0
-  facing: 0
+  facing: 1
   xDirection: 0
   currentWeapon: 0
   characterSprite: {fileID: 2079292366}
@@ -2580,10 +2580,10 @@ MonoBehaviour:
   airFactor: .349999994
   pullDown: 50
   attacksLeft: 3
-  downButton: Down1
+  downButton: Down2
   horizontalAxis: Horizontal2
   jumpAxis: Jump2
-  facing: 0
+  facing: 1
   attackButton: Fire2
   isJumping: 0
   attackDone: 1
