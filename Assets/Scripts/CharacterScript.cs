@@ -4,13 +4,14 @@ using System.Collections;
 public class CharacterScript : MonoBehaviour {
 	
 	public float movementSpeed = 10.0f;
-	public bool justTouchedPlatform = false;
+	public bool beginMovement = false;
+	public bool isNotGrounded = false;
 	public float jumpSpeed = 10.0f;
 	public float gravitySpeed = 20f;
 	public float maxSpeed = 10.0f;
 	public float airFactor = .5f;
 	public float pullDown = 50f;
-	public int attacksLeft = 3;
+	public int attacksLeft = 0;
 	public string horizontalAxis = "Horizontal1";
 	public string jumpAxis = "Jump1";
 	public int facing;
@@ -26,22 +27,22 @@ public class CharacterScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {	
 		animController = GetComponentInChildren<AnimationController>();
-		controller = GetComponent<CharacterController> ();
+		controller = GetComponent<CharacterController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		if(justTouchedPlatform = true) {
-			pullDown = 1f;
-		}
+		pullDown = 1.0f;
+		isNotGrounded = true;
 		
+		//Fix z position
 		if(transform.position.z != 0.0f) {
 			transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
 		}
-		
+
 		if(controller.isGrounded) {
-			justTouchedPlatform = false;
+			isNotGrounded = false;
 			isJumping = false;
 			moveDirection = new Vector3(Input.GetAxis(horizontalAxis), 0, 0);
 			moveDirection = transform.TransformDirection(moveDirection);
@@ -51,7 +52,6 @@ public class CharacterScript : MonoBehaviour {
 				isJumping = true;
 				moveDirection.y = jumpSpeed;
 			}
-
 		}
 			
 		else {
@@ -59,18 +59,14 @@ public class CharacterScript : MonoBehaviour {
 		}
 		
 		//Apply pull down force
-		if(!isJumping && justTouchedPlatform == false) {
+		if(!isJumping && !isNotGrounded) {
 			pullDown = 50f;
-			moveDirection.y -= gravitySpeed * Time.deltaTime * pullDown;
-			
+			moveDirection.y -= gravitySpeed * Time.deltaTime * pullDown;		
 		}
 		
 		else {
 			moveDirection.y -= gravitySpeed * Time.deltaTime;
 		}
-		
-		//Move player
-		controller.Move(moveDirection * Time.deltaTime);
 		
 		//Maintain max speed
 		if(moveDirection.x > maxSpeed) {
@@ -85,7 +81,6 @@ public class CharacterScript : MonoBehaviour {
 		if(Input.GetButtonDown(attackButton)) {
 			animController.performAttack();
 			attackDone = false;
-			attacksLeft--;
 		}
 		
 		//Face players at one another
@@ -96,7 +91,15 @@ public class CharacterScript : MonoBehaviour {
 			facing = 1;
 		}
 		
+		//Move player
+		if(beginMovement) {
 		animController.updateState(moveDirection.x, controller.isGrounded, facing);
+		controller.Move(moveDirection * Time.deltaTime);
+		}
+		
+		else{
+			controller.Move(new Vector3(0, -30, 0));
+		}
 		
 	}
 	
@@ -109,37 +112,47 @@ public class CharacterScript : MonoBehaviour {
 		
 		if(hit.gameObject.name == "Platform" && controller.isGrounded) {
 			isJumping = true;
-			justTouchedPlatform = true;
+			isNotGrounded = true;
 		}
 	}
 	
 	public void playAnimationDone(string type) {
 		switch(type) {
 		case "punch":
-			attackDone = true;
+			attackDone = true;	
 			break;
 		case "kick":
 			break;
 		case "gunFire":
-			attackDone = true;
-			break;
 		case "swingBat":
 			attackDone = true;
+			--attacksLeft;
+			if(attacksLeft == 0) {
+				equipItem("None");
+			}
 			break;
 		}
 	}
 	
 	void equipItem(string itemName) {
-		if(itemName == "Bat") {
+		switch(itemName) {
+		case "Bat":
 			animController.updateWeapon(AnimationController.WeaponType.BAT);
 			print (gameObject.name + " got a bat!");
-		}
+			break;
 		
-		if(itemName == "Gun") {
+		case "Gun":
 			animController.updateWeapon(AnimationController.WeaponType.GUN);
 			print (gameObject.name + " got a gun!");
+			break;
+		
+		case "None":
+			animController.updateWeapon(AnimationController.WeaponType.NONE);
+			break;
 		}
-		
-		
+	}
+	
+	public void startMovement() {
+		beginMovement = true;
 	}
 }

@@ -119,6 +119,8 @@ public class Timer : MonoBehaviour {
 	
 	public void startTimer() {
 		StartCoroutine("decrease");
+		GameObject.Find("Player 1").GetComponent<CharacterScript>().startMovement();
+		GameObject.Find("Player 2").GetComponent<CharacterScript>().startMovement();
 	}
 	
 	IEnumerator decrease()
