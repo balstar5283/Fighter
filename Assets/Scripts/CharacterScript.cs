@@ -78,7 +78,7 @@ public class CharacterScript : MonoBehaviour {
 		}
 		
 		//Attack!
-		if(Input.GetButtonDown(attackButton)) {
+		if(Input.GetButtonDown(attackButton) && attackDone) {
 			animController.performAttack();
 			attackDone = false;
 		}
@@ -134,7 +134,7 @@ public class CharacterScript : MonoBehaviour {
 		}
 	}
 	
-	void equipItem(string itemName) {
+	public void equipItem(string itemName) {
 		switch(itemName) {
 		case "Bat":
 			animController.updateWeapon(AnimationController.WeaponType.BAT);
