@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Scenes/blank.unity
   - enabled: 1
     path: Assets/Scenes/FightScene.unity
+  - enabled: 1
+    path: Assets/Scenes/RestartMenu.unity

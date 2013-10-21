@@ -20,7 +20,6 @@ public class Timer : MonoBehaviour {
 	private static GameObject [] beerPoint;
 	private static int player1Beer = 0;
 	private static int player2Beer = 0;
-    
 	
 	// Use this for initialization
 	void Start () {
@@ -154,6 +153,7 @@ public class Timer : MonoBehaviour {
 		yield return new WaitForSeconds (2);
 		if (player1Beer >= 2 || player2Beer >= 2) {
 			//TODO: Show menu
+			Application.LoadLevel("RestartMenu");
 		}
 		else {
 			Application.LoadLevel("FightScene");
