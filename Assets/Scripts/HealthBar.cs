@@ -31,9 +31,8 @@ public class HealthBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (gameOver) {
-			return;
-		}
+		
+		
 		float percentage1 = (maxHealth - player1Health)/(float)maxHealth;
 		float percentage2 = (maxHealth - player2Health)/(float)maxHealth;
 		if (percentage1 >= 0) {
@@ -48,10 +47,11 @@ public class HealthBar : MonoBehaviour {
 		else {
 			player2Display.renderer.material.SetTextureOffset("_MainTex", new Vector2(.5f, 0));
 		}
-		
+		if (gameOver) {
+			return;
+		}
 		if(player1Health <= 0 || player2Health <= 0)
 		{
-			player1Health = 0;
 			t.endGame();
 			gameOver = true;
 		}
@@ -65,11 +65,15 @@ public class HealthBar : MonoBehaviour {
 			else {
 				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(ouch, new Vector3(0, 0, 0));
 			}
+		
+		player1Health-= damage;
+		
+		if (player1Health < 0) {
+			player1Health = 0;
+		}
 		if (t.isRoundOver()) {
 			return;
 		}
-		player1Health-= damage;
-		
 		GameObject.Find("Player 1").GetComponent<CharacterScript>().knockBack();
 	}
 	
@@ -81,11 +85,14 @@ public class HealthBar : MonoBehaviour {
 			else {
 				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(ow2, new Vector3(0, 0, 0));
 			}
+		
+		player2Health-= damage;
+		if (player2Health < 0) {
+			player2Health = 0;
+		}
 		if (t.isRoundOver()) {
 			return;
 		}
-		player2Health-= damage;
-		
 
 		GameObject.Find ("Player 2").GetComponent<CharacterScript>().knockBack();
 	}
