@@ -21,6 +21,10 @@ public class Timer : MonoBehaviour {
 	private static int player1Beer = 0;
 	private static int player2Beer = 0;
 	
+	public GameObject goMenu;
+	public GameObject myPicker;
+	public Picker pick;
+	
 	// Use this for initialization
 	void Start () {
 		roundAnimation = GameObject.Find ("RoundDisplay");
@@ -41,6 +45,10 @@ public class Timer : MonoBehaviour {
 		beerPoint[1].renderer.enabled = false;
 		beerPoint[2].renderer.enabled = false;
 		beerPoint[3].renderer.enabled = false;
+		
+		goMenu = GameObject.Find("Menu");
+		myPicker = GameObject.Find("Picker");
+		pick = (Picker) myPicker.GetComponent(typeof(Picker));
 		
 		displayPlayerPoints();
 			
@@ -153,7 +161,9 @@ public class Timer : MonoBehaviour {
 		yield return new WaitForSeconds (2);
 		if (player1Beer >= 2 || player2Beer >= 2) {
 			//TODO: Show menu
-			Application.LoadLevel("RestartMenu");
+			goMenu.transform.position += new Vector3(0,-23f,0);
+			pick.showMenu = true;
+			
 		}
 		else {
 			Application.LoadLevel("FightScene");
@@ -168,7 +178,7 @@ public class Timer : MonoBehaviour {
 	}
 	
 	public void reset() {
-		currentRound = 0;
+		currentRound = 1;
 		player1Beer = 0;
 		player2Beer = 0;
 	}

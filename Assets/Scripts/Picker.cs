@@ -3,12 +3,13 @@ using System.Collections;
 
 public class Picker : MonoBehaviour {
 
-	public int maxStep = 1;
+	public int maxStep = 2;
 	public int currentStep = 0;
 	public GameObject controls;
 	public GameObject title;
-	
+	Timer t;
 	public bool showControl = false;
+	public bool showMenu = false;
 	
 	void menu() {
 		if (showControl)
@@ -17,16 +18,16 @@ public class Picker : MonoBehaviour {
 		{
 			if(currentStep < maxStep)
 			{
-				gameObject.transform.Translate(0,-0.25f,0);
+				gameObject.transform.Translate(0,-1.5f,0);
 				currentStep++;
-			Debug.Log(currentStep);
+				Debug.Log(currentStep);
 			}
 		}	
 		else if (Input.GetKeyDown (KeyCode.UpArrow))
 		{
 			if(currentStep > 0)
 			{
-				gameObject.transform.Translate(0,+0.25f,0);
+				gameObject.transform.Translate(0,1.5f,0);
 				currentStep--;
 				Debug.Log(currentStep);
 
@@ -43,13 +44,14 @@ public class Picker : MonoBehaviour {
 			}
 			switch (currentStep) {
 		    case 0:
+				t.reset ();
 				Application.LoadLevel("FightScene");
-				//GameObject go = GameObject.Find("Timer");
-				//Timer t = (Timer) go.GetComponent(typeof(Timer));
-				//t.reset ();
-				
 		        break;
 		    case 1:
+				t.reset ();
+				Application.LoadLevel ("Startup");
+		        break;
+		 	case 2:
 				Application.Quit();
 		        break;
 		    default:
@@ -63,6 +65,8 @@ public class Picker : MonoBehaviour {
 	void Start () {
 	//controls = GameObject.Find("controls");
 	title = GameObject.Find("title");
+	GameObject goTimer = GameObject.Find("Timer");
+	t = (Timer) goTimer.GetComponent(typeof(Timer));
 		//var InitialPosition = transform.position;
 		//offset = transform.position.y + transform.localScale.y;
 	}
@@ -71,8 +75,10 @@ public class Picker : MonoBehaviour {
 	void Update () {
 		//gameObject.transform.Translate( new Vector3( 0, speed * Input.GetAxis( "Vertical" ) * Time.deltaTime, 0 ), Space.World );
 		//step += 0.01f;
-		menu();
-		checkButtonPress();
-		
+		if(showMenu)
+		{
+			menu();
+			checkButtonPress();
+		}
 	}
 }

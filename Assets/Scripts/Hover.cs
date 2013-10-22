@@ -15,7 +15,7 @@ public class Hover : MonoBehaviour {
 			return;
 		if (Input.GetKeyDown (KeyCode.DownArrow))
 		{
-			if(currentStep < maxStep)
+			if(currentStep <= maxStep)
 			{
 				gameObject.transform.Translate(0,-0.25f,0);
 				currentStep++;
