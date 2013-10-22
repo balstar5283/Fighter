@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\BulletTravel.cs" />
      <Compile Include="Assets\Scripts\CharacterScript.cs" />
+     <Compile Include="Assets\Scripts\DisplayPortrait.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\Hitbox.cs" />
      <Compile Include="Assets\Scripts\Hover.cs" />

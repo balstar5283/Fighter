@@ -171,21 +171,24 @@ public class Timer : MonoBehaviour {
 			if(player1Beer == 2 && player2Beer == 2) {	
 				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(noonewins, Vector3.zero);
 				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(losersong, Vector3.zero, .25f, 1f);
-
+				GameObject.Find ("Portrait").GetComponent<DisplayPortrait>().displayPortrait(0);
 			}
 			
 			else if(player1Beer == 2 && player2Beer != 2) {
 				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(p1win, Vector3.zero);
 				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(victorysong, Vector3.zero, .25f, 1f);				
+				GameObject.Find ("Portrait").GetComponent<DisplayPortrait>().displayPortrait(1);
 			}
 			
 			else if(player1Beer != 2 && player2Beer == 2) {
 				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(p2win, Vector3.zero);
 				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(victorysong, Vector3.zero, .25f, 1f);
-
+				GameObject.Find ("Portrait").GetComponent<DisplayPortrait>().displayPortrait(2);
 			}
 			goMenu.transform.position += new Vector3(0,-23f,0);
 			pick.showMenu = true;
+			
+			
 			
 		}
 		else {
