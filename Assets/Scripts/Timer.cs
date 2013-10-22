@@ -69,18 +69,9 @@ public class Timer : MonoBehaviour {
 			GameObject player2 = GameObject.Find("Player 2");
 			player1.GetComponent<CharacterScript>().beginMovement = false;
 			player2.GetComponent<CharacterScript>().beginMovement = false;
-			if(hb.player1Health == hb.player2Health)
-			{
-				StartCoroutine( "showWinner", 0);
-			}
-			else if (hb.player1Health > hb.player2Health)
-			{
-				StartCoroutine( "showWinner", 1);
-			}
-			else if (hb.player2Health > hb.player1Health)
-			{
-				StartCoroutine( "showWinner", 2);
-			}
+
+			StartCoroutine( "showWinner");
+
 			gameOver = false;
 			roundOver = true;
 		}
@@ -145,18 +136,23 @@ public class Timer : MonoBehaviour {
 		}
 	}
 	
-	IEnumerator showWinner(int player) {
+	IEnumerator showWinner() {
 		StopCoroutine ("decrease");
 		yield return new WaitForSeconds( 1f );
 		rd.renderer.enabled = true;
 		checkWhoWon();
 		displayPlayerPoints();
 		yield return new WaitForSeconds( 1f );
-		if (player == 0) {
+		
+		
+		if (hb.player1Health == hb.player2Health) {
 			rd.displayDraw();
 		}
-		else if (player == 1 || player == 2) {
-			rd.displayWinner(player);
+		else if (hb.player1Health > hb.player2Health) {
+			rd.displayWinner(1);
+		}
+		else {
+			rd.displayWinner(2);
 		}
 		
 		gameOver = false;
