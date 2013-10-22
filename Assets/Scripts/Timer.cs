@@ -180,7 +180,7 @@ public class Timer : MonoBehaviour {
 			}
 			
 			else if(player1Beer != 2 && player2Beer == 2) {
-				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(p1win, Vector3.zero);
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(p2win, Vector3.zero);
 				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(victorysong, Vector3.zero, .25f, 1f);
 
 			}
