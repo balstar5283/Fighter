@@ -6,8 +6,11 @@ public class Snowfall : MonoBehaviour {
 	public float min = -.15f, max = .15f;
 	public float xDuration;
 	public float currentDuration;
+	public AudioClip windBlowing = null;
 	// Use this for initialization
 	void Start () {
+		
+		GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(windBlowing, Vector3.zero, .5f, 1f);
 		xSpeed = Random.Range(min, max);
 		currentDuration = 0;
 	}

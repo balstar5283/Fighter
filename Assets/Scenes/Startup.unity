@@ -568,6 +568,7 @@ GameObject:
   - 92: {fileID: 1470722835}
   - 124: {fileID: 1470722834}
   - 81: {fileID: 1470722833}
+  - 114: {fileID: 1470722838}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -635,6 +636,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1470722838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470722832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbf4f10af8b32f489ad721767a74d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1541608531
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +729,8 @@ MonoBehaviour:
   currentStep: 0
   controls: {fileID: 0}
   title: {fileID: 0}
+  superhobofighter: {fileID: 8300000, guid: 6c7b6f2d0396fc14ab50cb811020dffa, type: 3}
+  bloop: {fileID: 8300000, guid: a00fbb155431f8b46a36f0dc4cb3bd1e, type: 3}
   showControl: 0
 --- !u!1 &1859150991
 GameObject:

@@ -10,6 +10,7 @@ public class Picker : MonoBehaviour {
 	Timer t;
 	public bool showControl = false;
 	public bool showMenu = false;
+	public AudioClip bloop;
 	
 	void menu() {
 		if (showControl)
@@ -18,6 +19,7 @@ public class Picker : MonoBehaviour {
 		{
 			if(currentStep < maxStep)
 			{
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(bloop, Vector3.zero);
 				gameObject.transform.Translate(0,-1.5f,0);
 				currentStep++;
 				Debug.Log(currentStep);
@@ -27,6 +29,7 @@ public class Picker : MonoBehaviour {
 		{
 			if(currentStep > 0)
 			{
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(bloop, Vector3.zero);
 				gameObject.transform.Translate(0,1.5f,0);
 				currentStep--;
 				Debug.Log(currentStep);

@@ -1041,6 +1041,7 @@ MonoBehaviour:
   max: .300000012
   xDuration: 0
   currentDuration: 0
+  windBlowing: {fileID: 8300000, guid: 948626729eeac3146a7adf727f4ea885, type: 3}
 --- !u!1 &397763897
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,6 +2762,11 @@ MonoBehaviour:
   goMenu: {fileID: 0}
   myPicker: {fileID: 0}
   pick: {fileID: 0}
+  p1win: {fileID: 8300000, guid: 9e5d0b627a7914c49b6244e78b5b5357, type: 3}
+  p2win: {fileID: 8300000, guid: f0af7a56e0cff9c4497356bd5e8470ed, type: 3}
+  noonewins: {fileID: 8300000, guid: b4b2084bff830c840aed626612095075, type: 3}
+  victorysong: {fileID: 8300000, guid: 7bbf7a02acbaf964eb80a10b13d71a00, type: 3}
+  losersong: {fileID: 8300000, guid: 2506d02a52821234f9454071fb7705d6, type: 3}
 --- !u!1 &1489192875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,6 +3315,7 @@ MonoBehaviour:
   title: {fileID: 0}
   showControl: 0
   showMenu: 0
+  bloop: {fileID: 8300000, guid: a00fbb155431f8b46a36f0dc4cb3bd1e, type: 3}
 --- !u!23 &1677258410
 Renderer:
   m_ObjectHideFlags: 0

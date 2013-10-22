@@ -25,6 +25,12 @@ public class Timer : MonoBehaviour {
 	public GameObject myPicker;
 	public Picker pick;
 	
+	public AudioClip p1win;
+	public AudioClip p2win;
+	public AudioClip noonewins;
+	public AudioClip victorysong;
+	public AudioClip losersong;
+	
 	// Use this for initialization
 	void Start () {
 		roundAnimation = GameObject.Find ("RoundDisplay");
@@ -161,6 +167,23 @@ public class Timer : MonoBehaviour {
 		yield return new WaitForSeconds (2);
 		if (player1Beer >= 2 || player2Beer >= 2) {
 			//TODO: Show menu
+			
+			if(player1Beer == 2 && player2Beer == 2) {	
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(noonewins, Vector3.zero);
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(losersong, Vector3.zero, .25f, 1f);
+
+			}
+			
+			else if(player1Beer == 2 && player2Beer != 2) {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(p1win, Vector3.zero);
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(victorysong, Vector3.zero, .25f, 1f);				
+			}
+			
+			else if(player1Beer != 2 && player2Beer == 2) {
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(p1win, Vector3.zero);
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(victorysong, Vector3.zero, .25f, 1f);
+
+			}
 			goMenu.transform.position += new Vector3(0,-23f,0);
 			pick.showMenu = true;
 			

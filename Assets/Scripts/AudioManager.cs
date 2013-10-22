@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour {
 	public AudioSource Play(AudioClip clip, Vector3 point, float volume, float pitch)
     {
         //Create an empty game object
+        
         GameObject go = new GameObject("Audio: " + clip.name);
         go.transform.position = point;
  

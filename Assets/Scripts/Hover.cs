@@ -7,6 +7,8 @@ public class Hover : MonoBehaviour {
 	public int currentStep = 0;
 	public GameObject controls;
 	public GameObject title;
+	public AudioClip superhobofighter;
+	public AudioClip bloop;
 	
 	public bool showControl = false;
 	
@@ -17,6 +19,7 @@ public class Hover : MonoBehaviour {
 		{
 			if(currentStep < maxStep)
 			{
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(bloop, Vector3.zero);
 				gameObject.transform.Translate(0,-0.25f,0);
 				currentStep++;
 			Debug.Log(currentStep);
@@ -26,6 +29,7 @@ public class Hover : MonoBehaviour {
 		{
 			if(currentStep > 0)
 			{
+				GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(bloop, Vector3.zero);
 				gameObject.transform.Translate(0,+0.25f,0);
 				currentStep--;
 				Debug.Log(currentStep);
@@ -62,9 +66,11 @@ public class Hover : MonoBehaviour {
 			
 	void Start () {
 	//controls = GameObject.Find("controls");
+	
 	title = GameObject.Find("title");
 		//var InitialPosition = transform.position;
 		//offset = transform.position.y + transform.localScale.y;
+		GameObject.Find("Main Camera").GetComponent<AudioManager>().Play(superhobofighter, Vector3.zero);
 	}
 	
 	// Update is called once per frame
