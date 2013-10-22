@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\ItemScript.cs" />
      <Compile Include="Assets\Scripts\ItemSpawner.cs" />
      <Compile Include="Assets\Scripts\MovementAnimation.cs" />
+     <Compile Include="Assets\Scripts\MusicManager.cs" />
      <Compile Include="Assets\Scripts\Picker.cs" />
      <Compile Include="Assets\Scripts\RoundDisplay.cs" />
      <Compile Include="Assets\Scripts\SkipIntro.cs" />
@@ -64,6 +65,7 @@
      <Compile Include="Assets\Scripts\Test\RoundAnimation.cs" />
      <Compile Include="Assets\Scripts\Test\WalkTest.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
+     <Compile Include="Assets\Scripts\TitleMusic.cs" />
      <Compile Include="Assets\Scripts\TitleScroll.cs" />
      <Compile Include="Assets\Scripts\Vibrate.cs" />
   </ItemGroup>

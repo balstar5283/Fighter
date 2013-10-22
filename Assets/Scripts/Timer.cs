@@ -162,6 +162,10 @@ public class Timer : MonoBehaviour {
 		}
 		yield return new WaitForSeconds (2);
 		if (player1Beer >= 2 || player2Beer >= 2) {
+			
+			GameObject.Find("Game Music").audio.Stop();
+			Destroy(GameObject.Find("Game Music"));
+
 			//TODO: Show menu
 			
 			if(player1Beer == 2 && player2Beer == 2) {	
