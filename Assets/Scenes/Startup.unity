@@ -729,7 +729,7 @@ MonoBehaviour:
   currentStep: 0
   controls: {fileID: 0}
   title: {fileID: 0}
-  superhobofighter: {fileID: 8300000, guid: 6c7b6f2d0396fc14ab50cb811020dffa, type: 3}
+  superhobofighter: {fileID: 8300000, guid: 40e1c43c6544d8e419ca0498c7ad6a92, type: 3}
   bloop: {fileID: 8300000, guid: a00fbb155431f8b46a36f0dc4cb3bd1e, type: 3}
   showControl: 0
 --- !u!1 &1859150991
