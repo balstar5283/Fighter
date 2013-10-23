@@ -42,7 +42,7 @@ public class CharacterScript : MonoBehaviour {
 			transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
 		}
 		
-		if(Input.GetButtonDown(downButton) && isNotGrounded && isJumping && touchingPlatform) {
+		if(Input.GetAxis(downButton) != 0f && isNotGrounded && isJumping && touchingPlatform) {
 			gameObject.transform.Translate(new Vector3(0f, -.5f, 0f));
 		}
 		if (!isTakingDamage) {
