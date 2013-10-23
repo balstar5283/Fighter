@@ -11,27 +11,31 @@ Platform assembly: C:\Users\Duckys\Documents\GitHub\Fighter\test_Data\Managed\Un
 Loading C:\Users\Duckys\Documents\GitHub\Fighter\test_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: C:\Users\Duckys\Documents\GitHub\Fighter\test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\Duckys\Documents\GitHub\Fighter\test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.044 seconds
+- Completed reload, in  0.038 seconds
 desktop: 1680x1050 60Hz; virtual: 1680x1050 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-UnloadTime: 0.372188 ms
+UnloadTime: 0.485685 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 177.
-Total: 1.051363 ms (FindLiveObjects: 0.025959 ms CreateObjectMapping: 0.006942 ms MarkObjects: 0.050108 ms  DeleteObjects: 0.241786 ms)
+Total: 1.604363 ms (FindLiveObjects: 0.028676 ms CreateObjectMapping: 0.010866 ms MarkObjects: 0.067313 ms  DeleteObjects: 0.337172 ms)
 
-UnloadTime: 0.482365 ms
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+UnloadTime: 0.547566 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 460.
-Total: 1.303412 ms (FindLiveObjects: 0.015092 ms CreateObjectMapping: 0.010263 ms MarkObjects: 0.068823 ms  DeleteObjects: 0.513154 ms)
+Total: 1.936404 ms (FindLiveObjects: 0.024450 ms CreateObjectMapping: 0.014790 ms MarkObjects: 0.100517 ms  DeleteObjects: 0.677666 ms)
 
-Player 1 got a bat!
+Player 2 got a bat!
  
 (Filename: C:/BuildAgent/work/cac08d8a5e25d4cb/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Hit Player 2
+Player 2 got a gun!
+ 
+(Filename: C:/BuildAgent/work/cac08d8a5e25d4cb/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Player 2 got a gun!
  
 (Filename: C:/BuildAgent/work/cac08d8a5e25d4cb/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
